@@ -1,0 +1,22 @@
+/*
+ *  File: style.scss
+ */
+// Import Bootstrap
+// @import "node_modules/bootstrap/scss/bootstrap";
+// ...
+#anekdot {
+    $color_1: rgb(64, 64, 102);
+
+    details {
+        summary {
+            list-style-type: "[...]";
+            color: $color_1;
+            cursor: pointer;
+        }
+    }
+    details[open] {
+        summary {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,123 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        //- link(rel="stylesheet" type="text/css" href="css/index.css")
+
+        link(rel="stylesheet" type="text/css" href="css/index.css")
+        link(rel="stylesheet" type="text/css" href="css/anekdot.css")
+
+        //- link(rel="icon" href="./img/favicon.ico")
+        //- подключим бутстрап
+        //- link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+        //- integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
+
+        //- <!-- Latest compiled and minified CSS -->
+            //-    link(rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css")
+        //- node_modules/bootstrap/dist/css/bootstrap.min.css
+        //- /home/musa/GIT/GULP/node_modules/bootstrap/dist/css/bootstrap.min.css
+
+        //- link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+        //- <!-- Optional theme -->
+        //- <!-- Latest compiled and minified JavaScript -->
+        //- script(src="node_modules/bootstrap/dist/js/bootstrap.min.js")
+        //- title SysAdminTest
+        include components/head.pug
+
+#pageWrapper.page-wrapper
+    //- include components/header.html
+    include components/header.pug
+
+    body
+        .container
+            h1.text-center.pt-3.pb-3 Hello, All!
+            section
+                h5.text-center Данный ресурс посвящается всем желающим начать работать в IT, или скорее пройти собеседование.
+                br
+
+            section
+                strike Как в бородатом анекдоте:
+                details
+                    summary#anekdot
+                    //- summary
+                    //- style.
+                    //-     details summary {
+                    //-     list-style-type: "[...]";
+                    //-     /* такие слова, как «Ещё», «Читать дальше», «Нажать» лучше вносить в list-style-type, чтобы они не были видны в браузерах, не поддерживающих тег details (в Google Chrome отсутствует реализация на момент написания статьи) */
+                    //-     color: rgb(64, 64, 102);
+                    //-     cursor: pointer;
+                    //-     }
+                        
+                    //-     details[open] summary {
+                    //-     display: none;
+                    //-     }
+                    hr
+                    blockquote
+                        pre.text-center
+                            | Женщины делятся на три категории: девушек, дам, бабушек. 
+                            | Причем девушки еще на две: девушек и не девушек. 
+                            | Дамы, в свою очередь, на три: дам, не дам и дам — но не вам. 
+                            | А бабушки не делятся. Они разлагаются.
+                            | 
+                            | Так и сисАдмины делятся на:
+                    hr
+
+
+            section
+                //- <div class="row">
+                //- <div class="col-xs-6 col-md-3">
+                .row
+                    .col-sm-6.col-md-4
+                    .thumbnail
+                        h3 хелпдеск
+                        img.card-img-top(src='img/admin1.jpg' alt='pict_helpdesk')
+                        .caption
+                        p Длинная дорога юнный падаван, ждет тебя
+                        a.btn.btn-default(href='requestHelpdesk.html' role='button') Требования
+                        // модальное окно
+                        // /Модальное окно
+                    .col-sm-6.col-md-4
+                    .thumbnail
+                        h3 админ
+                        img.card-img-top(src='img/admin2.jpg' alt='pict_admin')
+                        .caption
+                        p
+                            | Собственно говоря, по большей части, именно для тебя тут все и
+                            | написано..
+                        p
+                            a.btn.btn-primary(href='testAdmin.html' role='button') Тесты на Админа
+                            a.btn.btn-primary(href='helpAdmin.html' role='button') Сбеседование
+                            a.btn.btn-default(href='requestAdmin.html' role='button') Требования
+                    .col-sm-6.col-md-4
+                    .thumbnail
+                        h3 Guru
+                        img.card-img-top(src='./img/admin3.jpeg' alt='pict_guru')
+                        .caption
+                        p
+                            | Если ты считаешь себя достойным этого уровня, ты уже должен
+                            | видеть свой путь
+                        p
+                            a.btn.btn-default(href='requestGuru.html' role='button') Требования
+                    .col-sm-6.col-md-4
+                    .thumbnail
+                        h3 iq
+                        img.card-img-top(src='../img/iq.png' alt='pict_iq')
+                        .caption
+                        p тест на общее развитие и сообразительность
+                        p
+                            a.btn.btn-primary(href='iq.html' role='button') TEST
+
+
+
+        //- <!-- переход на страницу тестов    -->
+        |
+        hr
+        |
+        a(href="testAdmin.html") ТЕСТЫ
+        |
+        hr
+        |
+        //- script(src="js/main.min.js")
+    include components/footer.pug

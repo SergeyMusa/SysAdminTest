@@ -1,0 +1,25 @@
+/*
+ *  File: test.scss
+ */
+#test html {
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+#test body {
+  width: 80%;
+  margin: 0 auto;
+}
+#test h1,
+#test h2 {
+  font-family: "Faster One", cursive;
+  font-size: 2.5rem;
+  text-align: center;
+}
+#test h2 {
+  letter-spacing: -5px;
+  margin-bottom: 10px;
+}
+#test header p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+}

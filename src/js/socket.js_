@@ -1,0 +1,6 @@
+// проверка работоспособности сокета - сейчас не использую - искал глюк
+var socket = io('http://localhost:3000'); // <-- хост:порт
+socket.on('news',function (data) {
+    console.log(data);
+    socket.emit('my other event',{my:'data'});
+});

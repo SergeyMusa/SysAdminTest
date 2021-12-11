@@ -1,0 +1,49 @@
+/*
+ *  File: test.scss
+ */
+
+#test {
+    $font_family_1: "helvetica neue", helvetica, arial, sans-serif;
+    $font_family_2: "Faster One", cursive;
+
+    html {
+        font-family: $font_family_1;
+    }
+
+    body {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    h1,
+    h2 {
+        font-family: $font_family_2;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    h2 {
+        letter-spacing: -5px;
+        margin-bottom: 10px;
+    }
+
+    header {
+        p {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    // section {
+    //     article {
+    //         // width: 33%;
+    //         float: left;
+    //     }
+    //     p {
+    //         margin: 5px 0;
+    //     }
+    //     ul {
+    //         margin-top: 0;
+    //     }
+    // }
+}

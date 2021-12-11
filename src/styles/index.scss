@@ -1,0 +1,38 @@
+/*
+ *  File: style.scss
+ */
+// Import Bootstrap
+// @import "bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
+// ...
+
+//index
+// body {
+//     background-color: gray;
+// }
+.test2 {
+    width: auto;
+    background-color: red;
+}
+#test2 {
+    width: auto;
+    background-color: blue;
+}
+
+#anekdot {
+   
+    $color_1: rgb(64, 64, 102);
+
+    details {
+        summary {
+            list-style-type: "[...]";
+            color: $color_1;
+            cursor: pointer;
+        }
+    }
+    details[open] {
+        summary {
+            display: none; 
+        }
+    } 
+}
