@@ -1,4 +1,0 @@
-function index() {
-   
-} 
-alert( 'parsimJson' )
