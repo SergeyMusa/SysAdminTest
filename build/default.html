@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head>    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -60,10 +61,76 @@
             <hr />
             <blockquote>
               <pre>
+=======
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ meta_description }}">
+  <link rel="stylesheet" type="text/css" href="assets/css/app.min.css">
+  <link rel="icon" href="assets/img/favicon.ico">
+</head>
+
+
+<div class="page-wrapper" id="pageWrapper">
+  {% include "components/header.html" %}
+</div>
+<!-- <header></header> -->
+
+<body>
+  <div class="container">
+    <h1 class="text-center pt-3 pb-3" id="YYY">Hello, All!</h1>
+
+    <section>
+      <p class="text-left">
+        Данный ресурс посвящается всем желающим начать работать в IT, или
+        скорее пройти собеседование.
+      </p>
+      <p>
+        Для начала будут тесты на СисАдмина, позже ;) по остальным профессиям
+      </p>
+      <h3>
+        небольшая анотация: все что вы здесь найдете не учебник, ни в коем
+        случае не пытайтесь выучить эти вопросы и устроиться на работу любой
+        ценой - это плохо кончится, синдром самозванца, эмоциональное
+        выгорание и депрессия - это не шутки.
+      </h3>
+      <p>
+        эти тесты, исключительно чтобы понять что примерно от вас требуется
+        знать и будут спрашивать, для учебы есть специализированные курсы
+      </p>
+      <p>
+        если понимаете, что многого не знаете, идите на работу "попроще",
+        учитесь и готовтесь, и да прибудет с вами сила )
+      </p>
+      <p>
+        <strike>Как в бородатом анекдоте:</strike>
+      <details>
+        <summary>
+          <style>
+            details summary {
+              list-style-type: "[...]";
+              /* такие слова, как «Ещё», «Читать дальше», «Нажать» лучше вносить в list-style-type, чтобы они не были видны в браузерах, не поддерживающих тег details (в Google Chrome отсутствует реализация на момент написания статьи) */
+              color: rgb(64, 64, 102);
+              cursor: pointer;
+            }
+
+            details[open] summary {
+              display: none;
+            }
+          </style>
+        </summary>
+        <hr />
+        <blockquote>
+          <pre>
+>>>>>>> 3347526 (add more all)
                     Женщины делятся на три категории: девушек, дам, бабушек. 
                     Причем девушки еще на две: девушек и не девушек. 
                     Дамы, в свою очередь, на три: дам, не дам и дам — но не вам. 
                     А бабушки не делятся. Они разлагаются.
+<<<<<<< HEAD
                 </pre
               >
             </blockquote>
@@ -200,4 +267,109 @@
 
 
     <!-- <script src="assets/js/app.min.js"></script> -->
+=======
+                </pre>
+        </blockquote>
+        <hr />
+      </details>
+      </p>
+
+      <p>так и админы, если очень грубо, делятся на:</p>
+    </section>
+
+    <section>
+      <!-- <div class="row"> -->
+      <!-- <div class="col-xs-6 col-md-3"> -->
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <h3>хелпдеск</h3>
+            <img src="assets/img/admin1.jpg" class="card-img-top" alt="pict_helpdesk" />
+            <div class="caption">
+              <p>Длинная дорога юнный падаван, ждет тебя</p>
+              <a href="pages/requestHelpdesk.html" class="btn btn-default" role="button">Требования</a>
+
+              <!-- модальное окно -->
+              <!-- /Модальное окно -->
+
+              <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <h3>админ</h3>
+            <img src="assets/img/admin2.jpg" class="card-img-top" alt="pict_admin" />
+            <div class="caption">
+              <p>
+                Собственно говоря, по большей части, именно для тебя тут все и
+                написано..
+              </p>
+              <p>
+                <a href="pages/testAdmin.html" class="btn btn-primary" role="button">Тесты на Админа</a>
+                <a href="pages/helpAdmin.html" class="btn btn-primary" role="button">Сбеседование</a>
+                <a href="pages/requestAdmin.html" class="btn btn-default" role="button">Требования</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <h3>Guru</h3>
+            <img src="assets/img/admin3.jpeg" class="card-img-top" alt="pict_guru" />
+            <div class="caption">
+              <p>
+                Если ты считаешь себя достойным этого уровня, ты уже должен
+                видеть свой путь
+              </p>
+              <p>
+                <a href="pages/requestGuru.html" class="btn btn-default" role="button">Требования</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <h3>iq</h3>
+            <img src="assets/img/iq.png" class="card-img-top" alt="pict_iq" />
+            <div class="caption">
+              <p>тест на общее развитие и сообразительность</p>
+              <p>
+                <a href="pages/iq.html" class="btn btn-primary" role="button">TEST</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- переход на страницу тестов    -->
+    <hr />
+    <a href="pages/testAdmin.html" class="href">ТЕСТЫ</a>
+    <hr />
+
+    <!-- загрузка тестов из базы или джейсон -->
+    <!-- <script runat="server"></script> -->
+
+    <div class="page-wrapper" id="pageWrapper">
+      {% block content %}{% endblock %}
+    </div>
+
+
+  </div>
+</body>
+
+
+
+<div class="page-wrapper" id="pageWrapper">
+  {% include "components/footer.html" %}
+</div>
+
+
+<!-- <script src="assets/js/app.min.js"></script> -->
+
+>>>>>>> 3347526 (add more all)
 </html>

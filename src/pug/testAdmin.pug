@@ -10,16 +10,22 @@ html(lang='ru')
         //- ~~~~~~~ ЧТО ЭТО \/--------------
         link(href='https://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet')
         //- link(rel='stylesheet' href='../../assets/css/app.min.css')
+<<<<<<< HEAD
         //- title Test
         include components/head.pug
 
 
+=======
+        include components/head.pug
+
+>>>>>>> 3347526 (add more all)
 #pageWrapper.page-wrapper
     include components/header.pug
 
     body#test
         .container
             div
+<<<<<<< HEAD
                 p
                     | Требуется авторизоваться, чтобы пройти тесты; ваши данные нужны только для
                     | статистики и никуда не будут переданы ).
@@ -35,6 +41,19 @@ html(lang='ru')
                     script(src='js/main.min.js')
                         //- build/js/main.min.js
                         //- script(src='../js/main.min.js')
+=======
+                p#autorization
+                    | Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
+                    | статистики</b> и никуда не будут переданы ;)
+                //- <p> Рекомендую использовать случайные сочетания клавиш, вы же как истинный шпион должны всегда скрываете себя )</p>
+                .form-check.form-switch
+                    input#flexSwitchCheckDefault.form-check-input(onclick='iqFunction()' type='checkbox')
+                    label.form-check-label(for='flexSwitchCheckDefault')
+                        | авторизоваться, чтобы пройти тесты
+                        //- проверка ввода имени
+                        //- -----------------скримты собираются в 1
+                    //- script(src='js/main.min.js')
+>>>>>>> 3347526 (add more all)
                 form(action='')
                     .row
                         .col
@@ -43,6 +62,7 @@ html(lang='ru')
                             input#userOrg.form-control(type='text' placeholder='ООО Тайное Общество' disabled='true' required='true')
                         .col
                             button#userButton.btn.btn-success(onclick='userFunction()' type='button' disabled='true')
+<<<<<<< HEAD
                                 | Success
                 //- </div>
                 //- ------------------------
@@ -152,3 +172,55 @@ html(lang='ru')
                 }
     #pageWrapper.page-wrapper
         include components/footer.pug
+=======
+                                | Это Я
+                        .col
+                            button#userButtonTest.btn.btn-success(onclick='doTest()' type='button' disabled='true')
+                                | ТЕСТ
+                            //- script. doTest
+                //- ------------------------
+            
+            button#userButtonRezult.btn.btn-success(onclick='doAnswer()' type='button' disabled='true')
+                | Проверить
+            button#userButtonDelRez.btn.btn-success(onclick='doDelete()' type='button')
+                | Удалить
+                script 
+                    const htmlElement = document.documentElement;
+                    const firstChildNodeH = htmlElement.firstChild;
+                    const lastChildNodeH = htmlElement.lastChild;
+                    console.log("htmlElement___" + htmlElement);
+                    console.log("firstChildNodeH" + firstChildNodeH);
+                    console.log("lastChildNodeH" + lastChildNodeH);
+
+                    const headElement = document.head;
+                    const firstChildNodeHd = headElement.firstChild;
+                    const lastChildNodeHd = headElement.lastChild;
+                    console.log("headElement______" + headElement);
+                    console.log("firstChildNodeHd" + firstChildNodeHd);
+                    console.log("lastChildNodeHd" + lastChildNodeHd);
+
+                    const bodyElement = document.body;
+                    const firstChildNodeB = bodyElement.firstChild;
+                    const lastChildNodeB = bodyElement.lastChild;
+                    console.log("bodyElement__________" + bodyElement);
+                    console.log("firstChildNodeB" + firstChildNodeB);
+                    console.log("lastChildNodeB" + lastChildNodeB);
+
+
+                //-     localStorage.removeItem("count")
+
+            section
+                p +
+                p добавить таймер
+                //- script(src="js/parsimJson.js")
+
+            section#bottom
+                p результаты:
+
+    //- #pageWrapper.page-wrapper
+    
+    include components/footer.pug
+
+    script(src='js/main.min.js')
+
+>>>>>>> 3347526 (add more all)

@@ -7,9 +7,31 @@
 // ...
 
 //index
+<<<<<<< HEAD
 // body {
 //     background-color: gray;
 // }
+=======
+.container {
+    // background-color: gray;
+    padding: 30px;
+    // margin: 30px;
+}
+
+// выравниваем размер картинок
+#viewport {
+    // width: 100vw;
+    height: 250px;
+    overflow: hidden;
+}
+
+// не работает, недо разобраться отступ у кнопок
+#button {
+    margin: auto 12px;
+    // padding: 1 2;
+}
+
+>>>>>>> 3347526 (add more all)
 .test2 {
     width: auto;
     background-color: red;
@@ -20,7 +42,10 @@
 }
 
 #anekdot {
+<<<<<<< HEAD
    
+=======
+>>>>>>> 3347526 (add more all)
     $color_1: rgb(64, 64, 102);
 
     details {
@@ -32,7 +57,13 @@
     }
     details[open] {
         summary {
+<<<<<<< HEAD
             display: none; 
         }
     } 
+=======
+            display: none;
+        }
+    }
+>>>>>>> 3347526 (add more all)
 }
