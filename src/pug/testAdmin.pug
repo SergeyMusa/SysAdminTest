@@ -10,38 +10,14 @@ html(lang='ru')
         //- ~~~~~~~ ЧТО ЭТО \/--------------
         link(href='https://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet')
         //- link(rel='stylesheet' href='../../assets/css/app.min.css')
-<<<<<<< HEAD
-        //- title Test
         include components/head.pug
 
-
-=======
-        include components/head.pug
-
->>>>>>> 3347526 (add more all)
 #pageWrapper.page-wrapper
     include components/header.pug
 
     body#test
         .container
             div
-<<<<<<< HEAD
-                p
-                    | Требуется авторизоваться, чтобы пройти тесты; ваши данные нужны только для
-                    | статистики и никуда не будут переданы ).
-                //- <p> Рекомендую использовать случайные сочетания клавиш, вы же как истинный шпион должны всегда скрываете себя )</p>
-                .form-check.form-switch
-                    input#flexSwitchCheckDefault.form-check-input(type='checkbox')
-                    label.form-check-label(for='flexSwitchCheckDefault')
-                        | авторизоваться, чтобы пройти тесты
-                        //- проверка ввода имени
-                        //- -----------------скримты не собираются в 1, надо разобраться !!!!!!!!!
-                        //- <script src="../../assets/js/app.min.js"></script>
-                        //- script(src='./js/checkName.js')
-                    script(src='js/main.min.js')
-                        //- build/js/main.min.js
-                        //- script(src='../js/main.min.js')
-=======
                 p#autorization
                     | Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
                     | статистики</b> и никуда не будут переданы ;)
@@ -53,7 +29,6 @@ html(lang='ru')
                         //- проверка ввода имени
                         //- -----------------скримты собираются в 1
                     //- script(src='js/main.min.js')
->>>>>>> 3347526 (add more all)
                 form(action='')
                     .row
                         .col
@@ -62,117 +37,6 @@ html(lang='ru')
                             input#userOrg.form-control(type='text' placeholder='ООО Тайное Общество' disabled='true' required='true')
                         .col
                             button#userButton.btn.btn-success(onclick='userFunction()' type='button' disabled='true')
-<<<<<<< HEAD
-                                | Success
-                //- </div>
-                //- ------------------------
-            section
-                p имя и орг перенести из джсон в кукисы
-                p добавить таймер
-                script(src="js/parsimJson.js")
-
-            script.
-                // alert( document.cookie userName);
-                // userName
-                // userOrg
-                // Cookies.get('userName'); // => "valueCookie"
-
-                // console.log( Cookies.get('userName') );
-
-                const header = document.querySelector("header");
-                const section = document.querySelector("section");
-
-                let requestURL = "./json/test.json";
-
-                let request = new XMLHttpRequest();
-                request.open("GET", requestURL);
-                request.responseType = "json";
-                request.send();
-
-                request.onload = function () {
-                const sysAdminTest = request.response;
-                populateHeader(sysAdminTest);
-                showTest(sysAdminTest);
-                };
-
-                function populateHeader(obj) {
-                const myH1 = document.createElement("h1");
-                myH1.textContent = obj["testSysadmin"];
-                header.appendChild(myH1);
-
-                const user = document.createElement("p");
-                user.textContent =
-                "Тест проходит: " +
-                obj["intervieweeName"] +
-                " из организации: " +
-                obj["intervieweeOrg"];
-                // user.textContent = 'Тест проходит: ' +  (document.cookie = user) + ' из организации: ' + (document.cookie = org);
-
-                header.appendChild(user);
-
-                const userRezult = document.createElement("p");
-                userRezult.textContent =
-                "Результаты теста: " +
-                obj["result"] +
-                " использовано попыток " +
-                obj["attempt"];
-                header.appendChild(userRezult);
-                }
-
-                function showTest(obj) {
-                const questions = obj["survey"];
-
-                for (let i = 0; i < questions.length; i++) {
-                // console.log(questions.length);
-                const myArticle = document.createElement("article");
-                const myH2 = document.createElement("h2");
-                const myPara1 = document.createElement("p");
-                const myPara2 = document.createElement("p");
-                const myPara3 = document.createElement("p");
-
-                // const myList = document.createElement("ul");
-
-                myArticle.setAttribute("class", "test3");
-
-                myH2.textContent = questions[i].numberTest;
-                myPara1.textContent = "Вопрос: " + questions[i].question;
-                myPara2.textContent = "Варианты ответов: " + questions[i].answers;
-                myPara3.textContent =
-                "Правильный ответ: " +
-                questions[i].right +
-                " - " +
-                questions[i].justification;
-
-                const radioAnswerList = document.createElement("div");
-
-                const variantAnsver = questions[i].answers;
-                console.log(variantAnsver)
-                for (let j = 0; j < variantAnsver.length; j++) {
-                // const listItem = document.createElement("li");
-                const radioAnswer = document.createElement("div");
-
-                radioAnswer.innerHTML =
-                `<input type='radio' name='answer' value="${j}"> <label for='${j}'>${variantAnsver[j]}</label>`;
-                // const listItem = document.createElement("radio");
-                // listItem.textContent = variantAnsver[j];
-                // radioAnswer.appendChild(listItem);
-                radioAnswerList.appendChild(radioAnswer)
-                }
-
-                myArticle.appendChild(myH2);
-                myArticle.appendChild(myPara1);
-                //
-                myArticle.appendChild(radioAnswerList);
-
-                myArticle.appendChild(myPara3);
-                // ответ
-                section.appendChild(myArticle);
-                // myArticle.appendChild(myPara2);
-                }
-                }
-    #pageWrapper.page-wrapper
-        include components/footer.pug
-=======
                                 | Это Я
                         .col
                             button#userButtonTest.btn.btn-success(onclick='doTest()' type='button' disabled='true')
@@ -223,4 +87,3 @@ html(lang='ru')
 
     script(src='js/main.min.js')
 
->>>>>>> 3347526 (add more all)

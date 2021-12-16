@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-function index() {
-    return 'index'
-=======
 
 const iqFunction = () => {
     const htmlElement = document.documentElement;
@@ -25,5 +21,4 @@ const iqFunction = () => {
     console.log("firstChildNodeB" + firstChildNodeB);
     console.log("lastChildNodeB" + lastChildNodeB);
     // return 'index'
->>>>>>> 3347526 (add more all)
 }

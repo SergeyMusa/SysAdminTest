@@ -26,6 +26,7 @@ const doAnswer = () => {
     const htmlElement = document.documentElement;
     const firstChildNodeH = htmlElement.firstChild;
     const lastChildNodeH = htmlElement.lastChild;
+
     console.log("htmlElement___" + htmlElement);
     console.log("firstChildNodeH" + firstChildNodeH);
     console.log("lastChildNodeH" + lastChildNodeH);
@@ -41,10 +42,13 @@ const doAnswer = () => {
     const bodyElement = document.body;
     const firstChildNodeB = bodyElement.firstChild;
     const lastChildNodeB = bodyElement.lastChild;
+    const childNodes = bodyElement.childNodes;
     console.log("bodyElement__________" + bodyElement);
     console.log("firstChildNodeB" + firstChildNodeB);
     console.log("lastChildNodeB" + lastChildNodeB);
+    console.log("childNodes" + childNodes);
 
+    console.log("bodyElement.hasChildNodes" + bodyElement.hasChildNodes);
 
 
     // получаем результаты с чекбоксов и заносим их в локал сторадж
