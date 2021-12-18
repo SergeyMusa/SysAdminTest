@@ -48,7 +48,7 @@ html(lang='ru')
                 | Проверить
             button#userButtonDelRez.btn.btn-success(onclick='doDelete()' type='button')
                 | Удалить
-                script 
+                script.
                     const htmlElement = document.documentElement;
                     const firstChildNodeH = htmlElement.firstChild;
                     const lastChildNodeH = htmlElement.lastChild;
@@ -58,7 +58,7 @@ html(lang='ru')
 
                     let x = 10;
                     x = x * 120;
-                    console.log(x);
+                        console.log(x);
 
                     const headElement = document.head;
                     const firstChildNodeHd = headElement.firstChild;

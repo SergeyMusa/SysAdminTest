@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/test.css">
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <head> 
+      <link rel="icon" href="./img/favicon.ico">
+      <title>SysAdminTest</title>
+    </head>
+  </head>
+</html>
+<div class="page-wrapper" id="pageWrapper">
+  <header>
+    <!-- верхнее меню-->
+    <nav class="navbar navbar-light" style="background-color: #e3fde9">
+      <div class="container-fluid"><a class="navbar-brand" href="index.html"><img class="d-inline-block align-text-top" src="./img/daemon.jpg" alt="" width="35" height="30">SysAdminTest</a>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+  <body id="test">
+    <div class="container">
+      <div>
+        <p id="autorization">
+          Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
+          статистики</b> и никуда не будут переданы ;)
+        </p>
+        <div class="form-check form-switch">
+          <input class="form-check-input" id="flexSwitchCheckDefault" onclick="iqFunction()" type="checkbox">
+          <label class="form-check-label" for="flexSwitchCheckDefault">авторизоваться, чтобы пройти тесты</label>
+        </div>
+        <form action="">
+          <div class="row">
+            <div class="col">
+              <input class="form-control" id="userName" type="text" placeholder="Штирлиц" disabled="true" label="qwe">
+            </div>
+            <div class="col">
+              <input class="form-control" id="userOrg" type="text" placeholder="ООО Тайное Общество" disabled="true" required="true">
+            </div>
+            <div class="col">
+              <button class="btn btn-success" id="userButton" onclick="userFunction()" type="button" disabled="true">Это Я</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-success" id="userButtonTest" onclick="doTest()" type="button" disabled="true">ТЕСТ</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <button class="btn btn-success" id="userButtonRezult" onclick="doAnswer()" type="button" disabled="true">Проверить</button>
+      <button class="btn btn-success" id="userButtonDelRez" onclick="doDelete()" type="button">Удалить
+        <script>
+          const htmlElement = document.documentElement;
+          const firstChildNodeH = htmlElement.firstChild;
+          const lastChildNodeH = htmlElement.lastChild;
+          //- console.log("htmlElement___" + htmlElement);
+          //- console.log("firstChildNodeH" + firstChildNodeH);
+          //- console.log("lastChildNodeH" + lastChildNodeH);
+          
+          let x = 10;
+          x = x * 120;
+              console.log(x);
+          
+          const headElement = document.head;
+          const firstChildNodeHd = headElement.firstChild;
+          const lastChildNodeHd = headElement.lastChild;
+          console.log("headElement______" + headElement);
+          console.log("firstChildNodeHd" + firstChildNodeHd);
+          console.log("lastChildNodeHd" + lastChildNodeHd);
+          
+          const bodyElement = document.body;
+          const firstChildNodeB = bodyElement.firstChild;
+          const lastChildNodeB = bodyElement.lastChild;
+          console.log("bodyElement__________" + bodyElement);
+          console.log("firstChildNodeB" + firstChildNodeB);
+          console.log("lastChildNodeB" + lastChildNodeB);
+          
+          
+        </script>
+      </button>
+      <section>
+        <p>+</p>
+        <p>добавить таймер</p>
+      </section>
+      <section id="bottom">
+        <p>результаты:</p>
+      </section>
+    </div>
+  </body>
+  <footer class="page-footer font-small blue" style="width: 100%">
+    <section class="footer-copyright text-center py-3">
+      <hr>
+      <p>добавить оценку теста +-</p>
+      <p>средний результат</p>
+      <p>печать результата или отправить на почту</p>
+      <p>сделать своою выборку тестов</p>
+      <p>форма отзывов: ошибки или предложения</p>
+      <p>
+        id теста, показывает количество вызовов за день(чтобы не откатывали
+        назад - не жульничали)
+      </p>
+      <p>таймер</p>
+    </section>
+    <hr>
+    <div class="footer-copyright text-center py-3">© 2021 Copyright</div>
+  </footer>
+  <script src="js/main.min.js"></script>
+</div>
