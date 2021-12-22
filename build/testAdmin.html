@@ -33,7 +33,7 @@
           статистики</b> и никуда не будут переданы ;)
         </p>
         <div class="form-check form-switch">
-          <input class="form-check-input" id="flexSwitchCheckDefault" onclick="iqFunction()" type="checkbox">
+          <input class="form-check-input" id="flexSwitchCheckDefault" onclick="disableButton()" type="checkbox">
           <label class="form-check-label" for="flexSwitchCheckDefault">авторизоваться, чтобы пройти тесты</label>
         </div>
         <form action="">
@@ -47,43 +47,16 @@
             <div class="col">
               <button class="btn btn-success" id="userButton" onclick="userFunction()" type="button" disabled="true">Это Я</button>
             </div>
-            <div class="col">
-              <button class="btn btn-success" id="userButtonTest" onclick="doTest()" type="button" disabled="true">ТЕСТ</button>
-            </div>
           </div>
         </form>
       </div>
-      <button class="btn btn-success" id="userButtonRezult" onclick="doAnswer()" type="button" disabled="true">Проверить</button>
-      <button class="btn btn-success" id="userButtonDelRez" onclick="doDelete()" type="button">Удалить
-        <script>
-          const htmlElement = document.documentElement;
-          const firstChildNodeH = htmlElement.firstChild;
-          const lastChildNodeH = htmlElement.lastChild;
-          console.log("htmlElement___" + htmlElement);
-          console.log("firstChildNodeH" + firstChildNodeH);
-          console.log("lastChildNodeH" + lastChildNodeH);
-          
-          const headElement = document.head;
-          const firstChildNodeHd = headElement.firstChild;
-          const lastChildNodeHd = headElement.lastChild;
-          console.log("headElement______" + headElement);
-          console.log("firstChildNodeHd" + firstChildNodeHd);
-          console.log("lastChildNodeHd" + lastChildNodeHd);
-          
-          const bodyElement = document.body;
-          const firstChildNodeB = bodyElement.firstChild;
-          const lastChildNodeB = bodyElement.lastChild;
-          console.log("bodyElement__________" + bodyElement);
-          console.log("firstChildNodeB" + firstChildNodeB);
-          console.log("lastChildNodeB" + lastChildNodeB);
-          
-          
-        </script>
-      </button>
       <section>
         <p>+</p>
         <p>добавить таймер</p>
       </section>
+      <div class="col">
+        <button class="btn btn-success" id="userButtonTest" onclick="checkTest()" type="button" disabled="true">ТЕСТ</button>
+      </div>
       <section id="bottom">
         <p>результаты:</p>
       </section>

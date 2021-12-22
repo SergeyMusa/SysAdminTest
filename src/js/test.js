@@ -1,101 +1,175 @@
 // формируем тест
 
-const doTest = () => {
-    const header = document.querySelector("header");
-    const section = document.querySelector("section");
+// const doTest = () => {
+const header = document.querySelector("header");
+const section = document.querySelector("section");
+const questionsNumber = 2;
+userButtonTest.disabled = false;
+const answerList = {};
 
-    let requestURL = "./json/test.json";
-    let request = new XMLHttpRequest();
+let requestURL = "./json/test.json";
+let request = new XMLHttpRequest();
 
-    request.open("GET", requestURL);
-    request.responseType = "json";
-    request.send();
+request.open("GET", requestURL);
+request.responseType = "json";
+request.send();
+let sysAdminTest
 
-    request.onload = function () {
-        const sysAdminTest = request.response;
-        populateHeader(sysAdminTest);
-        showTest(sysAdminTest);
-    };
-
-    function populateHeader(obj) {
-        const myH1 = document.createElement("h1");
-        myH1.textContent = obj["jTestSysadmin"];
-        header.appendChild(myH1);
-
-
-        const user = document.createElement("p");
-        "Тест проходит: " +
-            obj["intervieweeName"] +
-            " из организации: " +
-            obj["intervieweeOrg"];
-        // user.textContent = 'Тест проходит: ' + localStorage.getItem('user') + ' из организации: ' + localStorage.getItem('org');
-        //- let intervieweeName = user.textContent =localStorage.getItem('user');
-        //- let intervieweeOrg = user.textContent =localStorage.getItem('org');
-        header.appendChild(user);
+request.onload = function () {
+    sysAdminTest = request.response;
+    populateHeader(sysAdminTest);
+    showTest(sysAdminTest);
+    testCount(sysAdminTest);
+    setTimeout(() => {
+        console.log(Object.keys(answerList).length);
+    }, 5000)
+};
 
 
-    }
 
-    function showTest(obj) {
-        const questions = obj["jSurvey"];
 
-        for (let i = 0; i < questions.length; i++) {
-            // console.log(questions.length);
-            const myArticle = document.createElement("article");
-            const testNumber = document.createElement("h2");
-            const testQuestion = document.createElement("p");
-            const testVariants = document.createElement("p");
-            const testAnswer = document.createElement("p");
+function populateHeader(obj) {
+    const myH1 = document.createElement("h1");
+    myH1.textContent = obj["jTestSysadmin"];
+    header.appendChild(myH1);
 
-            // const myList = document.createElement("ul");
 
-            myArticle.setAttribute("class", "test3");
+    const user = document.createElement("p");
+    "Тест проходит: " +
+        obj["intervieweeName"] +
+        " из организации: " +
+        obj["intervieweeOrg"];
+    // user.textContent = 'Тест проходит: ' + localStorage.getItem('user') + ' из организации: ' + localStorage.getItem('org');
+    //- let intervieweeName = user.textContent =localStorage.getItem('user');
+    //- let intervieweeOrg = user.textContent =localStorage.getItem('org');
+    header.appendChild(user);
 
-            testNumber.textContent = questions[i].numberTest;
-            testQuestion.textContent = "Вопрос: " + questions[i].question;
-            testVariants.textContent = "Варианты ответов: " + questions[i].answers;
-            testAnswer.textContent =
-                "Правильный ответ: " +
-                questions[i].right +
-                " - " +
-                questions[i].justification;
 
-            const radioAnswerList = document.createElement("div");
+}
 
-            const variantAnsver = questions[i].answers;
-            console.log(variantAnsver);
-            for (let j = 0; j < variantAnsver.length; j++) {
-                // const listItem = document.createElement("li");
-                const radioAnswer = document.createElement("div");
+function showTest(obj) {
+    const questions = obj["survey"];
 
-                radioAnswer.innerHTML =
-                    `<input type='radio' name='answer${i}' value="${j}"> <label for='${j}'>${variantAnsver[j]}</label>`;
-                // const listItem = document.createElement("radio");
-                // listItem.textContent = variantAnsver[j];
-                // radioAnswer.appendChild(listItem);
-                radioAnswerList.appendChild(radioAnswer)
-            }
+    for (let i = 0; i < questions.length; i++) {
+        // console.log(questions.length);
+        const myArticle = document.createElement("article");
+        const testNumber = document.createElement("h2");
+        const testQuestion = document.createElement("p");
+        const testVariants = document.createElement("p");
+        const testAnswer = document.createElement("p");
 
-            myArticle.appendChild(testNumber);
-            myArticle.appendChild(testQuestion);
-            //
-            myArticle.appendChild(radioAnswerList);
+        // const myList = document.createElement("ul");
 
-            myArticle.appendChild(testAnswer);
-            // ответ
-            section.appendChild(myArticle);
-            // myArticle.appendChild(myPara2);
+        myArticle.setAttribute("class", "test3");
+
+        testNumber.textContent = questions[i].numberTest;
+        testQuestion.textContent = "Вопрос: " + questions[i].question;
+        testVariants.textContent = "Варианты ответов: " + questions[i].answers;
+        testAnswer.textContent =
+            "Правильный ответ: " +
+            questions[i].right +
+            " - " +
+            questions[i].justification;
+
+        const radioAnswerList = document.createElement("div");
+
+        const variantAnsver = questions[i].answers;
+        for (let j = 0; j < variantAnsver.length; j++) {
+            // const listItem = document.createElement("li");
+            const radioAnswer = document.createElement("div");
+
+            radioAnswer.innerHTML =
+                `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},${j})'> <label for='${j}'>${variantAnsver[j]}</label>`;
+            // const listItem = document.createElement("radio");
+            // listItem.textContent = variantAnsver[j];
+            // radioAnswer.appendChild(listItem);
+            radioAnswerList.appendChild(radioAnswer)
         }
 
-        // const userRezult = document.createElement("p");
-        // userRezult.textContent =
-        //     "Результаты теста: " +
-        //     obj["result"] +
-        //     " использовано попыток " +
-        //     localStorage.getItem('count');
-        // // obj["attempt"];
-        // header.appendChild(userRezult);
+        myArticle.appendChild(testNumber);
+        myArticle.appendChild(testQuestion);
+        //
+        myArticle.appendChild(radioAnswerList);
+
+        myArticle.appendChild(testAnswer);
+        // ответ
+        section.appendChild(myArticle);
+        // myArticle.appendChild(myPara2);
     }
-    userButtonTest.disabled = true;
-    userButtonRezult.disabled = false;
 }
+
+function onChangeButtonValue(num, value) {
+    answerList[num] = value;
+}
+
+
+function checkTest() {
+    //<input type="radio" name="answer0" value="0">
+    // function question1()
+    let selectedAns = 0;
+    let questions;
+
+    const answerListTrue = {}
+
+    sysAdminTest["survey"].map(item => {
+        answerListTrue[item.numberTest] = item.right;
+    })
+
+    console.log('answerList: ', answerList, 'answerListTrue: ', answerListTrue);
+
+
+    // console.log(sysAdminTest["survey"]);
+    for (var j = 0; j < questionsNumber; j++) {
+        // console.log("j- " + j);
+
+        let answerNumber = (`answer${j}`);
+        // console.log(typeof (answerNumber) + answerNumber);
+        // console.log(answerNumber);
+        //!!!!!!!!!!!!!!!!!!!!! строка работает а переменная нет
+        questions += document.getElementsByName(answerNumber)
+
+        // console.log(`questions=` + questions);
+
+        for (var i = 0; i < questions.length; i++) {
+            // console.log("questions.length " + questions.length);
+
+            if (questions[i].checked == true) {
+                selectedAns = questions[i].value;
+                console.log("value " + selectedAns);
+                break;
+            }
+
+            // if (selectedAns == '1') {
+            //     console.log("That the correct answer!");
+            //     console.log("value " + selectedAns);
+            //     //  break;
+            // }
+            // else {
+            //     console.log("Oops! try again!");
+            //     console.log("value " + selectedAns);
+            //     //    break;
+            // }
+        };
+    };
+};
+const testCount = () => {
+    let count = Number(localStorage.getItem('count')) || 0;
+    // console.log("count_= " + count);
+    count = count + 1;
+    // !!!!!!!!! исправить костыль
+    localStorage.setItem('count', count);
+    // console.log("count= " + localStorage.getItem('count'));
+};
+
+//
+// правильные ответы можно выводить все вместе внизу
+// потом сделать - перерисовать тест с выделением правильный
+
+const doDelete = () => {
+    // localStorage.removeItem('count');
+    localStorage.setItem('count', 0);
+
+    console.log("count= " + localStorage.getItem('count'));
+}
+
+// }

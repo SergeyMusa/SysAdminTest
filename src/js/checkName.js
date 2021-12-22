@@ -3,7 +3,7 @@
 // отключаем поля ввода пока не нажат чекбокс
 let checkboxClick = document.querySelector("#flexSwitchCheckDefault");
 
-checkboxClick.onclick = function disableButton() {
+const disableButton = () => {
   // alert( 'чекбокс выключён1' );
   userOrg.disabled = true;
   userName.disabled = true;

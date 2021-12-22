@@ -23,7 +23,7 @@ html(lang='ru')
                     | статистики</b> и никуда не будут переданы ;)
                 //- <p> Рекомендую использовать случайные сочетания клавиш, вы же как истинный шпион должны всегда скрываете себя )</p>
                 .form-check.form-switch
-                    input#flexSwitchCheckDefault.form-check-input(onclick='iqFunction()' type='checkbox')
+                    input#flexSwitchCheckDefault.form-check-input(onclick='disableButton()' type='checkbox')
                     label.form-check-label(for='flexSwitchCheckDefault')
                         | авторизоваться, чтобы пройти тесты
                         //- проверка ввода имени
@@ -38,46 +38,15 @@ html(lang='ru')
                         .col
                             button#userButton.btn.btn-success(onclick='userFunction()' type='button' disabled='true')
                                 | Это Я
-                        .col
-                            button#userButtonTest.btn.btn-success(onclick='doTest()' type='button' disabled='true')
-                                | ТЕСТ
-                            //- script. doTest
-                //- ------------------------
-            
-            button#userButtonRezult.btn.btn-success(onclick='doAnswer()' type='button' disabled='true')
-                | Проверить
-            button#userButtonDelRez.btn.btn-success(onclick='doDelete()' type='button')
-                | Удалить
-                script.
-                    const htmlElement = document.documentElement;
-                    const firstChildNodeH = htmlElement.firstChild;
-                    const lastChildNodeH = htmlElement.lastChild;
-                    console.log("htmlElement___" + htmlElement);
-                    console.log("firstChildNodeH" + firstChildNodeH);
-                    console.log("lastChildNodeH" + lastChildNodeH);
-
-                    const headElement = document.head;
-                    const firstChildNodeHd = headElement.firstChild;
-                    const lastChildNodeHd = headElement.lastChild;
-                    console.log("headElement______" + headElement);
-                    console.log("firstChildNodeHd" + firstChildNodeHd);
-                    console.log("lastChildNodeHd" + lastChildNodeHd);
-
-                    const bodyElement = document.body;
-                    const firstChildNodeB = bodyElement.firstChild;
-                    const lastChildNodeB = bodyElement.lastChild;
-                    console.log("bodyElement__________" + bodyElement);
-                    console.log("firstChildNodeB" + firstChildNodeB);
-                    console.log("lastChildNodeB" + lastChildNodeB);
-
-
-                //-     localStorage.removeItem("count")
-
             section
                 p +
                 p добавить таймер
+                
                 //- script(src="js/parsimJson.js")
-
+             
+            .col
+                button#userButtonTest.btn.btn-success(onclick='checkTest()' type='button' disabled='true')
+                    | ТЕСТ
             section#bottom
                 p результаты:
 

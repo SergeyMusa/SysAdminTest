@@ -9,7 +9,7 @@ const sass = require('gulp-sass')(require('sass'));
 const { series, parallel } = gulp
 
 const cleanBuild = () => {
-    return gulp.src('build/', {allowEmpty: true})
+    return gulp.src('build/', { allowEmpty: true })
         .pipe(clean());
 }
 
@@ -37,20 +37,20 @@ const html = () => {
 
 const styles = () => {
     return gulp.src([
-        'node_modules/bootstrap/scss/bootstrap.scss',          
+        'node_modules/bootstrap/scss/bootstrap.scss',
         'src/styles/**/*.scss'
-        ])
+    ])
         .pipe(sass())
-        .pipe(gulp.dest('build/css', {allowEmpty: true}))
+        .pipe(gulp.dest('build/css', { allowEmpty: true }))
         .pipe(browserSync.stream());
 }
 
 const scripts = () => {
     return gulp.src('src/js/*.js')
-        .pipe(babel({
+        /* .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(uglify())
+        .pipe(uglify()) */
         .pipe(concat('main.min.js'))
         .pipe(gulp.dest('build/js'))
         .pipe(browserSync.stream());
