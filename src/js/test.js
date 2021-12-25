@@ -14,6 +14,8 @@ const section = document.querySelector("section");
 const questionsNumber = 2;
 // userButtonTest.disabled = false;
 const answerList = {};
+const answerListTrue = {};
+
 
 let requestURL = "./json/test.json";
 let request = new XMLHttpRequest();
@@ -44,11 +46,7 @@ function populateHeader(obj) {
 
     const user = document.createElement("p");
 
-    "Тест проходит: " +
-        obj["intervieweeName"] +
-        " из организации: " +
-        obj["intervieweeOrg"];
-    // user.textContent = 'Тест проходит: ' + localStorage.getItem('user') + ' из организации: ' + localStorage.getItem('org');
+    user.textContent = 'Тест проходит: ' + localStorage.getItem('user') + ' из организации: ' + localStorage.getItem('org');
     //- let intervieweeName = user.textContent =localStorage.getItem('user');
     //- let intervieweeOrg = user.textContent =localStorage.getItem('org');
     header.appendChild(user);
@@ -57,11 +55,11 @@ function populateHeader(obj) {
 function showTest(obj) {
     const questions = obj["survey"];
 
-    for (let i = 0; i < questions.length; i++) {
+    for (let i = 1; i < questions.length; i++) {
         // console.log(questions.length);
         const myArticle = document.createElement("article");
         const testNumber = document.createElement("h2");
-        const testQuestion = document.createElement("p");
+        const testQuestion = document.createElement("h5");
         const testVariants = document.createElement("p");
         const testAnswer = document.createElement("p");
 
@@ -81,92 +79,139 @@ function showTest(obj) {
         const radioAnswerList = document.createElement("div");
 
         const variantAnsver = questions[i].answers;
-        for (let j = 0 + 1; j < variantAnsver.length; j++) {
+        for (let j = 1; j < variantAnsver.length; j++) {
             // const listItem = document.createElement("li");
             const radioAnswer = document.createElement("div");
-
             radioAnswer.innerHTML =
                 `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},${j})'> <label for='${j}'>${variantAnsver[j]}</label>`;
-            // const listItem = document.createElement("radio");
-            // listItem.textContent = variantAnsver[j];
-            // radioAnswer.appendChild(listItem);
             radioAnswerList.appendChild(radioAnswer)
         }
+        answerList[i] = 0;
 
         myArticle.appendChild(testNumber);
         myArticle.appendChild(testQuestion);
         //
         myArticle.appendChild(radioAnswerList);
 
-        myArticle.appendChild(testAnswer);
+        // myArticle.appendChild(testAnswer);
         // ответ
+
         section.appendChild(myArticle);
         // myArticle.appendChild(myPara2);
     }
+
 }
 
 function onChangeButtonValue(num, value) {
     answerList[num] = value;
 }
 
+// полное сравнение двух объектов - работает
+// function isEqual(answerList, answerListTrue) {
+//     const props1 = Object.getOwnPropertyNames(answerList);
+//     const props2 = Object.getOwnPropertyNames(answerListTrue);
+
+//     if (props1.length !== props2.length) {
+//         console.log('что-то пошло не так, ответов и тестов разное кол-во');// 
+//         return false;
+//     };
+
+//     for (let i = 0; i < props1.length; i += 1) {
+//         const prop = props1[i];
+
+//         if (answerList[prop] !== answerListTrue[prop]) {
+//             return false;
+//         }
+//     };
+//     return true;
+// }
+
+//function A(){$c=0;foreach($_SESSION['test']['objects'] as &$o){if($o['type']==1&&isset($o['an'])&&$o['an'])$c++;}return $c;}
+
+
+// сравнение двух объектов с подсчетом процентов
+function isEqual(answerList, answerListTrue) {
+    const props1 = Object.getOwnPropertyNames(answerList);
+    const props2 = Object.getOwnPropertyNames(answerListTrue);
+
+    let evaluation = 0;
+    const evaluationPoor = 51;
+    const evaluationGood = 75;
+    const evaluationFine = 90;
+
+    let answerAmount = 0;
+    let answerRight = 0;
+
+    // delete answerListTrue["0"];
+
+    if (props1.length !== props2.length) {
+        console.log('что-то пошло не так, ответов и тестов разное кол-во');// 
+        return false;
+    };
+
+    for (let i = 0; i < props2.length; i += 1) {
+        const count = props1[i];
+
+        if (answerList[count] === answerListTrue[count]) {
+            answerRight++;
+            // return false;
+        }
+        answerAmount++;
+    };
+
+    //    evaluation = Math.round(answerRight / answerRight);
+    evaluation = Math.round(answerRight * 100 / answerAmount);
+
+    const itog = evaluation > evaluationPoor ? 'Good' : 'Poor';
+
+    console.log(answerAmount, answerRight, evaluation, '%', itog);
+
+    return; // true;
+}
+
+
 
 function checkTest() {
     //<input type="radio" name="answer0" value="0">
-    // function question1()
-
     userButtonTest.disabled = false;
 
     let selectedAns = 0;
     let questions;
 
-    const answerListTrue = {}
-
     sysAdminTest["survey"].map(item => {
         answerListTrue[item.numberTest] = item.right;
     })
+    delete answerListTrue["0"];
+    // еще вариант
+    // delete thisIsObject.0;
 
-    console.log('answerList: ', answerList, 'answerListTrue: ', answerListTrue);
+    console.log("answerList____: ", answerList);
+    console.log('answerListTrue: ', answerListTrue);
 
+    // !!!!!!!!!!!!! делаю тут
+    // console.log('al=', answerList);
+    isEqual(answerList, answerListTrue);
+    console.log('isEqual_', isEqual(answerList, answerListTrue));
+    testCount();
 
-    // console.log(sysAdminTest["survey"]);
-    for (var i = 0; i < questionsNumber; i++) {
-        // console.log("j- " + j);
+    // localStorage.setItem(i, '0');
+    // console.log("ls_", j, " ", localStorage.getItem(j));
+    //   localStorage.getItem(j) 
+    //
+    const LS = { ...localStorage };
+    console.log(LS);
 
-        let answerNumber = (`answer${i}`);
-
-        questions += document.getElementsByName(answerNumber)
-
-        // console.log(`questions=` + questions);
-
-        for (var j = 0 + 1; j < questions.length; j++) {
-            // console.log("questions.length " + questions.length);
-
-            if (questions[j].checked == true) {
-                selectedAns = questions[j].value;
-                console.log("value " + selectedAns);
-                break;
-            }
-
-            // if (selectedAns == '1') {
-            //     console.log("That the correct answer!");
-            //     console.log("value " + selectedAns);
-            //     //  break;
-            // }
-            // else {
-            //     console.log("Oops! try again!");
-            //     console.log("value " + selectedAns);
-            //     //    break;
-            // }
-        };
-    };
+    // !!!!!!!!!!!!! делаю тут
 };
+
 const testCount = () => {
     let count = Number(localStorage.getItem('count')) || 0;
     // console.log("count_= " + count);
-    count = count + 1;
+    count++;
     // !!!!!!!!! исправить костыль с счетчиком(проверить может уже)
     localStorage.setItem('count', count);
-    // console.log("count= " + localStorage.getItem('count'));
+
+    console.log("count= " + localStorage.getItem('count'));
 };
 
 //
@@ -174,6 +219,7 @@ const testCount = () => {
 // потом сделать - перерисовать тест с выделением правильный
 
 const doDelete = () => {
+    // сброс счетчика тестов
     // localStorage.removeItem('count');
     localStorage.setItem('count', 0);
 

@@ -28,8 +28,8 @@ const getTime = () => {
 
   var now = new Date().toLocaleTimeString();
   var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+  // console.log("utc " + utc + "__" + now);
 
-  console.log("utc " + utc + "__" + now);
   // document.write(Year);
   // document.write(Month);
   // document.write(Day);
