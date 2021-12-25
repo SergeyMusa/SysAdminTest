@@ -36,14 +36,12 @@ html(lang='ru')
                         .col
                             input#userOrg.form-control(type='text' placeholder='ООО Тайное Общество' disabled='true' required='true')
                         .col
-                            button#userButton.btn.btn-success(onclick='userFunction()' type='button' disabled='true')
+                            button#userButton.btn.btn-success(onclick='doStartTest()' type='button' disabled='true')
                                 | Это Я
             section
                 p +
                 p добавить таймер
                 
-                //- script(src="js/parsimJson.js")
-             
             .col
                 button#userButtonTest.btn.btn-success(onclick='checkTest()' type='button' disabled='true')
                     | ТЕСТ

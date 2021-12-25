@@ -1,10 +1,10 @@
 // скрипты для страницы тест
 
+// !!!!!!!!!!!!!! пока не работает импорт, делать по другому
 // подключаем библиотеку Лодаш
 // import * as _ from 'lodash';
 // import _ from "lodash";
-console.log(_.isEqual(1, 2));
-
+// console.log(_.isEqual(1, 2));
 
 // формируем тест
 
@@ -12,7 +12,7 @@ console.log(_.isEqual(1, 2));
 const header = document.querySelector("header");
 const section = document.querySelector("section");
 const questionsNumber = 2;
-userButtonTest.disabled = false;
+// userButtonTest.disabled = false;
 const answerList = {};
 
 let requestURL = "./json/test.json";
@@ -23,7 +23,10 @@ request.responseType = "json";
 request.send();
 let sysAdminTest
 
-request.onload = function () {
+//был запуск при старте страницы, соответственно этого скрипта
+//имело смысл, когда несколько js файлов
+// request.onload = function () {
+const generationTest = () => {
     sysAdminTest = request.response;
     populateHeader(sysAdminTest);
     showTest(sysAdminTest);
@@ -34,13 +37,10 @@ request.onload = function () {
 };
 
 
-
-
 function populateHeader(obj) {
     const myH1 = document.createElement("h1");
     myH1.textContent = obj["jTestSysadmin"];
     header.appendChild(myH1);
-
 
     const user = document.createElement("p");
     "Тест проходит: " +
@@ -51,8 +51,6 @@ function populateHeader(obj) {
     //- let intervieweeName = user.textContent =localStorage.getItem('user');
     //- let intervieweeOrg = user.textContent =localStorage.getItem('org');
     header.appendChild(user);
-
-
 }
 
 function showTest(obj) {
@@ -114,6 +112,9 @@ function onChangeButtonValue(num, value) {
 function checkTest() {
     //<input type="radio" name="answer0" value="0">
     // function question1()
+
+    userButtonTest.disabled = false;
+
     let selectedAns = 0;
     let questions;
 
@@ -164,7 +165,7 @@ const testCount = () => {
     let count = Number(localStorage.getItem('count')) || 0;
     // console.log("count_= " + count);
     count = count + 1;
-    // !!!!!!!!! исправить костыль
+    // !!!!!!!!! исправить костыль с счетчиком(проверить может уже)
     localStorage.setItem('count', count);
     // console.log("count= " + localStorage.getItem('count'));
 };
