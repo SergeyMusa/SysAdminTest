@@ -1,3 +1,11 @@
+// скрипты для страницы тест
+
+// подключаем библиотеку Лодаш
+// import * as _ from 'lodash';
+// import _ from "lodash";
+console.log(_.isEqual(1, 2));
+
+
 // формируем тест
 
 // const doTest = () => {

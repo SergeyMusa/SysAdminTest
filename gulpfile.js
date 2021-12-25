@@ -8,6 +8,11 @@ const browserSync = require("browser-sync").create();
 const sass = require('gulp-sass')(require('sass'));
 const { series, parallel } = gulp
 
+// const browserify = require('browserify');
+// const vinylStream = require('vinyl-source-stream');
+// const vinylBuffer = require('vinyl-buffer');
+
+
 const cleanBuild = () => {
     return gulp.src('build/', { allowEmpty: true })
         .pipe(clean());
@@ -47,14 +52,33 @@ const styles = () => {
 
 const scripts = () => {
     return gulp.src('src/js/*.js')
-        /* .pipe(babel({
+        .pipe(babel({
             presets: ['@babel/env']
+            // module.exports = { presets: ['@babel/preset-env'], }; 
         }))
-        .pipe(uglify()) */
+        /*   .pipe(uglify()) */
         .pipe(concat('main.min.js'))
         .pipe(gulp.dest('build/js'))
         .pipe(browserSync.stream());
 }
+// const scripts = () => {
+//     return browserify(`src/js/*.js`)
+//         .transform('babelify', {
+//             presets: ['@babel/preset-env'],
+//         })
+//         .bundle()
+//         .pipe(vinylStream('main.js'))
+//         .pipe(vinylBuffer())
+//         .pipe(gulp.dest('build/js'))
+//         .pipe(uglify({
+//             toplevel: true,
+//         }).on('error', notify.onError()))
+//         .pipe(renamre({
+//             extname: '.min.js',
+//         }))
+//         .pipe(gulp.dest('build/js'))
+//         .pipe(browserSync.stream());
+// };
 
 const moveImg = () => {
     return gulp.src('src/img/*.*')
