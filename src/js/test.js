@@ -43,6 +43,7 @@ function populateHeader(obj) {
     header.appendChild(myH1);
 
     const user = document.createElement("p");
+
     "Тест проходит: " +
         obj["intervieweeName"] +
         " из организации: " +
@@ -80,7 +81,7 @@ function showTest(obj) {
         const radioAnswerList = document.createElement("div");
 
         const variantAnsver = questions[i].answers;
-        for (let j = 0; j < variantAnsver.length; j++) {
+        for (let j = 0 + 1; j < variantAnsver.length; j++) {
             // const listItem = document.createElement("li");
             const radioAnswer = document.createElement("div");
 
@@ -128,22 +129,20 @@ function checkTest() {
 
 
     // console.log(sysAdminTest["survey"]);
-    for (var j = 0; j < questionsNumber; j++) {
+    for (var i = 0; i < questionsNumber; i++) {
         // console.log("j- " + j);
 
-        let answerNumber = (`answer${j}`);
-        // console.log(typeof (answerNumber) + answerNumber);
-        // console.log(answerNumber);
-        //!!!!!!!!!!!!!!!!!!!!! строка работает а переменная нет
+        let answerNumber = (`answer${i}`);
+
         questions += document.getElementsByName(answerNumber)
 
         // console.log(`questions=` + questions);
 
-        for (var i = 0; i < questions.length; i++) {
+        for (var j = 0 + 1; j < questions.length; j++) {
             // console.log("questions.length " + questions.length);
 
-            if (questions[i].checked == true) {
-                selectedAns = questions[i].value;
+            if (questions[j].checked == true) {
+                selectedAns = questions[j].value;
                 console.log("value " + selectedAns);
                 break;
             }
