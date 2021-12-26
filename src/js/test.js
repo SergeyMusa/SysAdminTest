@@ -1,16 +1,19 @@
 // скрипты для страницы тест
+// const gulpLodash = require('gulp-lodash');
+
 
 // !!!!!!!!!!!!!! пока не работает импорт, делать по другому
+
 // подключаем библиотеку Лодаш
-// import * as _ from 'lodash';
-// import _ from "lodash";
-// console.log(_.isEqual(1, 2));
+// const lodash = require('lodash')
+// console.log(gulpLodash.isEqual(1, 2));
+
+// gulpLodash('Rainbow');
+
 
 // формируем тест
-
-// const doTest = () => {
 const header = document.querySelector("header");
-const section = document.querySelector("section");
+const section = document.querySelector("#top");
 const questionsNumber = 2;
 // userButtonTest.disabled = false;
 const answerList = {};
@@ -106,28 +109,8 @@ function onChangeButtonValue(num, value) {
     answerList[num] = value;
 }
 
-// полное сравнение двух объектов - работает
-// function isEqual(answerList, answerListTrue) {
-//     const props1 = Object.getOwnPropertyNames(answerList);
-//     const props2 = Object.getOwnPropertyNames(answerListTrue);
-
-//     if (props1.length !== props2.length) {
-//         console.log('что-то пошло не так, ответов и тестов разное кол-во');// 
-//         return false;
-//     };
-
-//     for (let i = 0; i < props1.length; i += 1) {
-//         const prop = props1[i];
-
-//         if (answerList[prop] !== answerListTrue[prop]) {
-//             return false;
-//         }
-//     };
-//     return true;
-// }
 
 //function A(){$c=0;foreach($_SESSION['test']['objects'] as &$o){if($o['type']==1&&isset($o['an'])&&$o['an'])$c++;}return $c;}
-
 
 // сравнение двух объектов с подсчетом процентов
 function isEqual(answerList, answerListTrue) {
@@ -166,6 +149,18 @@ function isEqual(answerList, answerListTrue) {
 
     console.log(answerAmount, answerRight, evaluation, '%', itog);
 
+
+    //!!!!!!!!!!!!!!!!!
+    const section = document.querySelector("#bottom");
+    const testRez = document.createElement("h4");
+    //const testTexst = document.createTextNode("Ответ:, rez");
+
+    testRez.textContent = "Ответ123:, rez";
+
+    section.appendChild(testRez);
+    // section.innerHTML =
+    // document.insertBefore(testRez, section);
+
     return; // true;
 }
 
@@ -190,8 +185,8 @@ function checkTest() {
 
     // !!!!!!!!!!!!! делаю тут
     // console.log('al=', answerList);
-    isEqual(answerList, answerListTrue);
-    console.log('isEqual_', isEqual(answerList, answerListTrue));
+    const equal = isEqual(answerList, answerListTrue);
+    console.log('isEqual_', equal);
     testCount();
 
     // localStorage.setItem(i, '0');
@@ -200,6 +195,8 @@ function checkTest() {
     //
     const LS = { ...localStorage };
     console.log(LS);
+
+    //gulpLodash.
 
     // !!!!!!!!!!!!! делаю тут
 };

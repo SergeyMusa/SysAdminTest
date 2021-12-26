@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
+    "gulp-lodash": "^0.1.2",
     "lodash": "^4.17.21"
   }
 }

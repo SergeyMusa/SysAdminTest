@@ -12,6 +12,7 @@ const { series, parallel } = gulp
 // const vinylStream = require('vinyl-source-stream');
 // const vinylBuffer = require('vinyl-buffer');
 
+// gulpLodash('Rainbow');
 
 const cleanBuild = () => {
     return gulp.src('build/', { allowEmpty: true })

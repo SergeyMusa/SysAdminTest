@@ -38,13 +38,13 @@ html(lang='ru')
                         .col
                             button#userButton.btn.btn-success(onclick='doStartTest()' type='button' disabled='true')
                                 | Это Я
-            section
+            section#top
                 p +
-                p добавить таймер
                 
             .col
-                button#userButtonTest.btn.btn-success(onclick='checkTest()' type='button' disabled='true')
+                div#userButtonTest.btn.btn-success(onclick='checkTest()' type='button' disabled='true')
                     | ТЕСТ
+
             section#bottom
                 p результаты:
 
