@@ -18,6 +18,7 @@ const questionsNumber = 2;
 // userButtonTest.disabled = false;
 const answerList = {};
 const answerListTrue = {};
+let equal = "";
 
 
 let requestURL = "./json/test.json";
@@ -152,18 +153,25 @@ function isEqual(answerList, answerListTrue) {
 
     //!!!!!!!!!!!!!!!!!
     const section = document.querySelector("#bottom");
-    const testRez = document.createElement("h4");
+    const testRez = document.createElement("h5");
     //const testTexst = document.createTextNode("Ответ:, rez");
 
-    testRez.textContent = "Ответ123:, rez";
+    // for (var i in answerRight) {
+    // for (let [key, value] of answerRight) {
+    //     console.log(value);
 
+    //     // result += answerRight + "." + i + " = " + answerRight[i] + "<br>";
+    //     // testRez.textContent = (`"Ответ: " ${answerAmount}, ${answerRight}, ${evaluation}%, ${itog}`);
+    console.log("============");
+    // }
     section.appendChild(testRez);
+
+
     // section.innerHTML =
     // document.insertBefore(testRez, section);
 
     return; // true;
-}
-
+};
 
 
 function checkTest() {
@@ -175,7 +183,7 @@ function checkTest() {
 
     sysAdminTest["survey"].map(item => {
         answerListTrue[item.numberTest] = item.right;
-    })
+    });
     delete answerListTrue["0"];
     // еще вариант
     // delete thisIsObject.0;
@@ -185,19 +193,18 @@ function checkTest() {
 
     // !!!!!!!!!!!!! делаю тут
     // console.log('al=', answerList);
-    const equal = isEqual(answerList, answerListTrue);
+    equal = isEqual(answerList, answerListTrue);
     console.log('isEqual_', equal);
+
     testCount();
 
+
+    // работает вывод всего содержимого localStorage
+    // const LS = { ...localStorage };
+    // console.log(LS);
+    //---------------
     // localStorage.setItem(i, '0');
-    // console.log("ls_", j, " ", localStorage.getItem(j));
     //   localStorage.getItem(j) 
-    //
-    const LS = { ...localStorage };
-    console.log(LS);
-
-    //gulpLodash.
-
     // !!!!!!!!!!!!! делаю тут
 };
 
