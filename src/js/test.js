@@ -119,8 +119,8 @@ function isEqual(answerList, answerListTrue) {
     const props2 = Object.getOwnPropertyNames(answerListTrue);
 
     let evaluation = 0;
-    const evaluationPoor = 51;
-    const evaluationGood = 75;
+    const evaluationPoor = 49;
+    const evaluationGood = 70;
     const evaluationFine = 90;
 
     let answerAmount = 0;
@@ -146,8 +146,11 @@ function isEqual(answerList, answerListTrue) {
     //    evaluation = Math.round(answerRight / answerRight);
     evaluation = Math.round(answerRight * 100 / answerAmount);
 
-    const itog = evaluation > evaluationPoor ? 'Good' : 'Poor';
-
+    const itog = evaluation < evaluationPoor ? 'You stupid, go out!!!' :
+        evaluation < evaluationGood ? 'Poor' :
+            evaluation < evaluationFine ? 'Good' :
+                'Best'
+        ;
     console.log(answerAmount, answerRight, evaluation, '%', itog);
 
 
@@ -161,8 +164,8 @@ function isEqual(answerList, answerListTrue) {
     //     console.log(value);
 
     //     // result += answerRight + "." + i + " = " + answerRight[i] + "<br>";
-    //     // testRez.textContent = (`"Ответ: " ${answerAmount}, ${answerRight}, ${evaluation}%, ${itog}`);
-    console.log("============");
+    testRez.textContent = (`"Ответ: " ${answerAmount}, ${answerRight}, ${evaluation}%, ${itog}`);
+    // console.log("============");
     // }
     section.appendChild(testRez);
 
