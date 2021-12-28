@@ -22,13 +22,17 @@ html(lang='ru')
                     | Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
                     | статистики</b> и никуда не будут переданы ;)
                 //- <p> Рекомендую использовать случайные сочетания клавиш, вы же как истинный шпион должны всегда скрываете себя )</p>
-                .form-check.form-switch
-                    input#flexSwitchCheckDefault.form-check-input(onclick='disableButton()' type='checkbox')
-                    label.form-check-label(for='flexSwitchCheckDefault')
-                        | авторизоваться, чтобы пройти тесты
-                        //- проверка ввода имени
-                        //- -----------------скримты собираются в 1
-                    //- script(src='js/main.min.js')
+                .row
+                    .col
+                        .form-check.form-switch
+                            input#flexSwitchCheckDefault.form-check-input(onclick='disableButton1()' type='checkbox')
+                            label.form-check-label(for='flexSwitchCheckDefault1')
+                                | тесты <b>все подряд</b> или по одному
+                    .col 
+                        .form-check.form-switch
+                            input#flexSwitchCheckDefault.form-check-input(onclick='disableButton()' type='checkbox')
+                            label.form-check-label(for='flexSwitchCheckDefault')
+                                | авторизоваться, чтобы пройти тесты
                 form(action='')
                     .row
                         .col
@@ -36,8 +40,8 @@ html(lang='ru')
                         .col
                             input#userOrg.form-control(type='text' placeholder='ООО Тайное Общество' disabled='true' required='true')
                         .col
-                            button#userButton.btn.btn-success(onclick='doStartTest()' type='button' disabled='true')
-                                | Это Я
+                            button#userButton.btn.btn-warning(onclick='doStartTest()' type='button' disabled='true')
+                                |  &nbsp&nbsp>&nbsp>&nbsp>&nbsp&nbsp&nbspЭто&nbspЯ,&nbspможно&nbspначинать&nbspтест&nbsp&nbsp&nbsp<&nbsp<&nbsp<&nbsp&nbsp
             section#top
                 p +
                 

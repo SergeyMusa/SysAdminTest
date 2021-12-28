@@ -138,12 +138,10 @@ function isEqual(answerList, answerListTrue) {
 
         if (answerList[count] === answerListTrue[count]) {
             answerRight++;
-            // return false;
         }
         answerAmount++;
     };
 
-    //    evaluation = Math.round(answerRight / answerRight);
     evaluation = Math.round(answerRight * 100 / answerAmount);
 
     const itog = evaluation < evaluationPoor ? 'You stupid, go out!!!' :
@@ -151,27 +149,23 @@ function isEqual(answerList, answerListTrue) {
             evaluation < evaluationFine ? 'Good' :
                 'Best'
         ;
-    console.log(answerAmount, answerRight, evaluation, '%', itog);
-
 
     //!!!!!!!!!!!!!!!!!
     const section = document.querySelector("#bottom");
     const testRez = document.createElement("h5");
     //const testTexst = document.createTextNode("Ответ:, rez");
 
-    // for (var i in answerRight) {
-    // for (let [key, value] of answerRight) {
-    //     console.log(value);
+    for (var i = 1; i < 3; i++) {
+        // for (let [key, value] of answerRight) {
+        console.log(i);
+        // };
+        // result += answerRight + "." + i + " = " + answerRight[i] + "<br>";
+        testRez.textContent = (`"Ответ: " ${answerAmount}, ${answerRight}, ${evaluation}%, ${itog}`);
 
-    //     // result += answerRight + "." + i + " = " + answerRight[i] + "<br>";
-    testRez.textContent = (`"Ответ: " ${answerAmount}, ${answerRight}, ${evaluation}%, ${itog}`);
-    // console.log("============");
-    // }
-    section.appendChild(testRez);
-
-
+        console.log(answerAmount, answerRight, evaluation, '%', itog);
+        section.appendChild(testRez);
+    }
     // section.innerHTML =
-    // document.insertBefore(testRez, section);
 
     return; // true;
 };
@@ -181,8 +175,8 @@ function checkTest() {
     //<input type="radio" name="answer0" value="0">
     userButtonTest.disabled = false;
 
-    let selectedAns = 0;
-    let questions;
+    // let selectedAns = 0;
+    // let questions;
 
     sysAdminTest["survey"].map(item => {
         answerListTrue[item.numberTest] = item.right;
@@ -199,7 +193,17 @@ function checkTest() {
     equal = isEqual(answerList, answerListTrue);
     console.log('isEqual_', equal);
 
+    for (var i = 1; i < 4; i++) {
+        // for (let [key, value] of answerRight) {
+        console.log(i);
+    };
+
     testCount();
+    for (var i = 1; i < 5; i++) {
+        // for (let [key, value] of answerRight) {
+        console.log(i + "-2-");
+    };
+
 
 
     // работает вывод всего содержимого localStorage

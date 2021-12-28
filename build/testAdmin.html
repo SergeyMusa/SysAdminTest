@@ -32,9 +32,19 @@
           Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
           статистики</b> и никуда не будут переданы ;)
         </p>
-        <div class="form-check form-switch">
-          <input class="form-check-input" id="flexSwitchCheckDefault" onclick="disableButton()" type="checkbox">
-          <label class="form-check-label" for="flexSwitchCheckDefault">авторизоваться, чтобы пройти тесты</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-check form-switch">
+              <input class="form-check-input" id="flexSwitchCheckDefault" onclick="disableButton1()" type="checkbox">
+              <label class="form-check-label" for="flexSwitchCheckDefault1">тесты <b>все подряд</b> или по одному</label>
+            </div>
+          </div>
+          <div class="col"> 
+            <div class="form-check form-switch">
+              <input class="form-check-input" id="flexSwitchCheckDefault" onclick="disableButton()" type="checkbox">
+              <label class="form-check-label" for="flexSwitchCheckDefault">авторизоваться, чтобы пройти тесты</label>
+            </div>
+          </div>
         </div>
         <form action="">
           <div class="row">
@@ -45,7 +55,7 @@
               <input class="form-control" id="userOrg" type="text" placeholder="ООО Тайное Общество" disabled="true" required="true">
             </div>
             <div class="col">
-              <button class="btn btn-success" id="userButton" onclick="doStartTest()" type="button" disabled="true">Это Я</button>
+              <button class="btn btn-warning" id="userButton" onclick="doStartTest()" type="button" disabled="true"> &nbsp&nbsp>&nbsp>&nbsp>&nbsp&nbsp&nbspЭто&nbspЯ,&nbspможно&nbspначинать&nbspтест&nbsp&nbsp&nbsp<&nbsp<&nbsp<&nbsp&nbsp</button>
             </div>
           </div>
         </form>
