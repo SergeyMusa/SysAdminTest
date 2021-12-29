@@ -14,7 +14,7 @@
 // формируем тест
 const header = document.querySelector("header");
 const section = document.querySelector("#top");
-const questionsNumber = 2;
+// const questionsNumber = 2;
 // userButtonTest.disabled = false;
 const answerList = {};
 const answerListTrue = {};
@@ -34,23 +34,23 @@ let sysAdminTest
 // request.onload = function () {
 const generationTest = () => {
     sysAdminTest = request.response;
-    populateHeader(sysAdminTest);
     showTest(sysAdminTest);
-    testCount(sysAdminTest);
-    setTimeout(() => {
-        console.log(Object.keys(answerList).length);
-    }, 5000)
+    // testCount(sysAdminTest);
+
+    // setTimeout(() => {
+    //     console.log(Object.keys(answerList).length);
+    // }, 5000)
 };
 
 
 function populateHeader(obj) {
-    const myH1 = document.createElement("h1");
+    const myH1 = document.createElement("h1.test");
     myH1.textContent = obj["jTestSysadmin"];
     header.appendChild(myH1);
 
     const user = document.createElement("p");
 
-    user.textContent = 'Тест проходит: ' + localStorage.getItem('user') + ' из организации: ' + localStorage.getItem('org');
+    user.textContent = `Тест проходит: ${localStorage.getItem('user')} из организации: ${localStorage.getItem('org')}, попытка №${localStorage.getItem('count') || '0'}`;
     //- let intervieweeName = user.textContent =localStorage.getItem('user');
     //- let intervieweeOrg = user.textContent =localStorage.getItem('org');
     header.appendChild(user);
@@ -115,6 +115,9 @@ function onChangeButtonValue(num, value) {
 
 // сравнение двух объектов с подсчетом процентов
 function isEqual(answerList, answerListTrue) {
+
+    populateHeader(sysAdminTest);
+
     const props1 = Object.getOwnPropertyNames(answerList);
     const props2 = Object.getOwnPropertyNames(answerListTrue);
 
@@ -151,23 +154,24 @@ function isEqual(answerList, answerListTrue) {
         ;
 
     //!!!!!!!!!!!!!!!!!
+    // for (let [key, value] of answerRight) {
+    // console.log(i);
+    // };
     const section = document.querySelector("#bottom");
+    // const testRez = document. ("h5");
+    var delEl = document.querySelector('h5');
+    delEl.remove();
+
     const testRez = document.createElement("h5");
     //const testTexst = document.createTextNode("Ответ:, rez");
 
-    for (var i = 1; i < 3; i++) {
-        // for (let [key, value] of answerRight) {
-        console.log(i);
-        // };
-        // result += answerRight + "." + i + " = " + answerRight[i] + "<br>";
-        testRez.textContent = (`"Ответ: " ${answerAmount}, ${answerRight}, ${evaluation}%, ${itog}`);
+    testRez.textContent = (`Правильных ответов: ${answerRight}, из ${answerAmount}, это ${evaluation}%, 
+    \nрезюме: ${itog}`);
+    // console.log(answerAmount, answerRight, evaluation, '%', itog);
 
-        console.log(answerAmount, answerRight, evaluation, '%', itog);
-        section.appendChild(testRez);
-    }
+    section.appendChild(testRez);
     // section.innerHTML =
-
-    return; // true;
+    return itog; // true;
 };
 
 
@@ -189,20 +193,25 @@ function checkTest() {
     console.log('answerListTrue: ', answerListTrue);
 
     // !!!!!!!!!!!!! делаю тут
-    // console.log('al=', answerList);
+
     equal = isEqual(answerList, answerListTrue);
     console.log('isEqual_', equal);
 
-    for (var i = 1; i < 4; i++) {
-        // for (let [key, value] of answerRight) {
-        console.log(i);
-    };
+    // for (var i = 1; i < 4; i++) {
+    //     // for (let [key, value] of answerRight) {
+    //     console.log(i);
+    // };
 
+    // for (var i = 1; i < 5; i++) {
+    // for (let [key, value] of answerRight) {
+    //     console.log(i + "-2-");
+    // };
+    // for (let [key, value] of answerList.length) {
+    console.log('al=', Object.keys(answerList).length);
+
+    // console.log(42, key, "z", value);
+    // };
     testCount();
-    for (var i = 1; i < 5; i++) {
-        // for (let [key, value] of answerRight) {
-        console.log(i + "-2-");
-    };
 
 
 
@@ -219,10 +228,8 @@ const testCount = () => {
     let count = Number(localStorage.getItem('count')) || 0;
     // console.log("count_= " + count);
     count++;
-    // !!!!!!!!! исправить костыль с счетчиком(проверить может уже)
     localStorage.setItem('count', count);
-
-    console.log("count= " + localStorage.getItem('count'));
+    // console.log("count= " + localStorage.getItem('count'));
 };
 
 //
