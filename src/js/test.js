@@ -44,7 +44,9 @@ const generationTest = () => {
 
 
 function populateHeader(obj) {
-    const myH1 = document.createElement("h1.test");
+    //const myH1 = document.createElement("h1.rezult");
+    const myH1 = document.querySelector(".rezult");
+
     myH1.textContent = obj["jTestSysadmin"];
     header.appendChild(myH1);
 
@@ -171,6 +173,7 @@ function isEqual(answerList, answerListTrue) {
 
     section.appendChild(testRez);
     // section.innerHTML =
+    // console.log([42, 20, 100, 1, 3].sort());
     return itog; // true;
 };
 
