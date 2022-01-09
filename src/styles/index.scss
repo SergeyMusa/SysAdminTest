@@ -6,10 +6,11 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 // ...
 
-//index
+
 .container {
     // background-color: gray;
     padding: 30px;
+    padding-bottom: 90px;
     // margin: 30px;
 }
 
@@ -20,12 +21,13 @@
     overflow: hidden;
 }
 
-// не работает, недо разобраться отступ у кнопок
+// не работает, надо разобраться отступ у кнопок
 #button {
     margin: auto 12px;
     // padding: 1 2;
 }
 
+// !!!!!!!!!!!! надо подчистить
 .test2 {
     width: auto;
     background-color: red;

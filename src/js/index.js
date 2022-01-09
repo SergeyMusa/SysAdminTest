@@ -21,4 +21,4 @@ const iqFunction = () => {
     // console.log("firstChildNodeB" + firstChildNodeB);
     // console.log("lastChildNodeB" + lastChildNodeB);
     // return 'index'
-}
+};
