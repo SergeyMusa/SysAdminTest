@@ -18,13 +18,11 @@ header {
 
 .container {
   /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
-  flex: 1 0 auto;
+  min-height: calc(80vh - 70px);
 }
 
 .footer {
   /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
-  flex: 0 0 auto;
-  flex-shrink: 0;
 }
 
 #autorization {

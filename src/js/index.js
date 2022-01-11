@@ -1,4 +1,5 @@
 
+
 const iqFunction = () => {
     // const htmlElement = document.documentElement;
     // const firstChildNodeH = htmlElement.firstChild;
@@ -21,4 +22,5 @@ const iqFunction = () => {
     // console.log("firstChildNodeB" + firstChildNodeB);
     // console.log("lastChildNodeB" + lastChildNodeB);
     // return 'index'
+    console.log("!!!!!!!!!!!!!!!!!!");
 };
