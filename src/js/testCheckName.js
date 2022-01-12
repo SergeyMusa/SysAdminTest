@@ -14,7 +14,7 @@ function randomInteger(min, max) {
   return Math.round(rand);
 }
 
-const getTime = () => {
+function getTime () {
   let Data = new Date();
   let Year = Data.getFullYear();
   let Month = Data.getMonth();
@@ -37,7 +37,7 @@ const getTime = () => {
   // document.write(Minutes);
   // document.write(Seconds);
 
-};
+}
 
 const disableButton = () => {
   // alert( 'чекбокс выключён1' );
@@ -54,7 +54,6 @@ const disableButton = () => {
     userButton.disabled = false;
     // autorization.dis = false;
     document.getElementById('autorization').hidden = true;
-
   }
   getTime();
 };

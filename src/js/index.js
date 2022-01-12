@@ -1,5 +1,3 @@
-
-
 const iqFunction = () => {
     // const htmlElement = document.documentElement;
     // const firstChildNodeH = htmlElement.firstChild;
@@ -23,4 +21,10 @@ const iqFunction = () => {
     // console.log("lastChildNodeB" + lastChildNodeB);
     // return 'index'
     console.log("!!!!!!!!!!!!!!!!!!");
+       // setTimeout(() => {
+    //     console.log(Object.keys(answerList).length);
+    // }, 5000)
 };
+
+// просто прикольно резобрать 
+//function A(){$c=0;foreach($_SESSION['test']['objects'] as &$o){if($o['type']==1&&isset($o['an'])&&$o['an'])$c++;}return $c;}
