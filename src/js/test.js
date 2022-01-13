@@ -47,53 +47,85 @@ function populateHeader(obj) { // вывод сформированого заг
     header.appendChild(user);
 }
 
-function shuffle(array) {   // перемещать мессив
-    array.sort(() => Math.random() - 0.5);
+function randomArr(arr) { // перемещать мессив
+    arr.sort(() => Math.random() - 0.5);
 }
+
+function randomObj(obj) { // shuffle// перемещать объект
+    let newObj = {};
+    let keys = Object.keys(obj);
+    keys.sort(function (a, b) {
+        return Math.random() - 0.5;
+    });
+    keys.forEach(function (x) {
+        newObj[x] = obj[x];
+    });
+    return newObj;
+}
+
 
 
 function onChangeButtonValue(num, value) {
     answerList[num] = value;
 }
-let myObject = { 'a': 1, 'b': 12, 'c': 3 }; //'numberTest'
+//  тренировочный объект
+const myObject = {
+    'n1': '1',
+    'n2': 12,
+    'n3': 3,
+    n4: 4,
+    n5: {
+        mm1: '1001',
+        mm2: '1012',
+        mm3: 1003
+    }
+}; // в json 'numberTest'
 let myArr = [];
 
 function showTest(obj) { // формирование и вывод прямого теста
     const questions = obj.survey;
 
+    // рандом в первый раз раз запускать пустой, второй рабочий
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // randomObj(myObject);
+    // console.log(randomObj(myObject)); //
+    // console.log(randomObj(myObject));
+    // console.log(randomObj(myObject));
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
 
-Object.keys(myObject).map(function(key, index) {
-  myObject[key] *= 2;
-});
-myArr = Object.values(myObject);// этой строкой преобразуем объект в массив
-
-console.log(myObject);
-console.log(myArr);
-// => { 'a': 2, 'b': 4, 'c': 6 }
-
-   console.log(questions.map (function(x){}));
-    // let arrNumberQwestion ; // исправить на получение из json
-    // const arrNewForCheck = {};
-    
-    // arrNumberQwestion = ;
-    // console.log("len json=", questions.length);
-//    let arrNumberQwestion = sysAdminTest.numberTest.parse({});
-// console.log(arrNumberQwestion);
-    // console.log("len json=",sysAdminTest.numberTest.map(function(x){
-        // arrNumberQwestion = (x.numberTest);
-        // return x} ));
-    // for (let i =0; sysAdminTest.numberTest.length; i++) {
-
-    // }
-//    console.log(">>>",sysAdminTest.numberTest.map); 
-    // (item => {   //sysAdminTest["survey"].map(item => {
-    //     answerListTrue[item.numberTest] = item.right;
+    // Object.keys(myObject).map(function (key, index) {
+    //     myObject[key] *= 2;
     // });
-    
-// console.log(arrNumberQwestion,"-",arrNewForCheck);
+    // myArr = Object.values(myObject); // этой строкой преобразуем объект в массив
+
+    // console.log(myObject.n5);
+    // console.log(myArr);
+
+    // console.log(typeof(myObject) );
+    console.log("+++++++++++++++++++++++++++");
+    for (let key in myObject) {
+        // delete questions[key][0] ;// ["0"];
+        // console.log("key_", typeof(myObject[key]) );
+
+        if (typeof (myObject[key]) === 'object') {
+            for (let key2 in myObject[key]) {
+                // console.log("[key2_",typeof(myObject[key][key2]) );
+                console.log("key2__", key2, "--", myObject[key][key2]);
+            }
+        } else {
+            console.log("key_", key, "--", myObject[key]);
+        }
+    }
+    console.log("--------------");
+
+
+    // console.log(questions.map(function (y) {return y}));
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+    // let arrNumberQwestion ; // исправить на получение из json
+    //    let arrNumberQwestion = sysAdminTest.numberTest.parse({});
+
     function contains(arr, elem) {
         return arr.find((i) => i === elem) != -1;
     }
@@ -120,26 +152,19 @@ console.log(myArr);
         const radioAnswerList = document.createElement("div");
         const variantAnswer = questions[i].answers;
 
-     // !!!!!!!!!!! do there
-            
-            // let n = arrNumberQwestion[randomInteger( Math.min(...arrNumberQwestion), Math.max(...arrNumberQwestion) ) ];
-            // console.log("n= "+n);
-            //     if (contains(arrNumberQwestion, n) !== "-1" 
-            //         && 
-            //         contains(arrNewForCheck, n) === true ) {
-            // console.log("n=",n,"-",contains(arrNewForCheck, n) );              
-            //         arrNewForCheck.push(n);
+        // !!!!!!!!!!! do there
 
-                    for (let j = 1; j < variantAnswer.length; j++) {
-                        // const listItem = document.createElement("li");
-                        const radioAnswer = document.createElement("div");
-                        radioAnswer.innerHTML =
-                            `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},
+
+        for (let j = 1; j < variantAnswer.length; j++) {
+            // const listItem = document.createElement("li");
+            const radioAnswer = document.createElement("div");
+            radioAnswer.innerHTML =
+                `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},
                                 ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
-                        radioAnswerList.appendChild(radioAnswer);
-                    } 
-                // }
-// console.log("arrNewForCheck= "+arrNewForCheck);
+            radioAnswerList.appendChild(radioAnswer);
+        }
+        // }
+        // console.log("arrNewForCheck= "+arrNewForCheck);
         answerList[i] = 0;
 
         myArticle.appendChild(testNumber);
@@ -152,7 +177,7 @@ console.log(myArr);
 }
 
 
-function isEqual(answerList, answerListTrue) {  // сравнение двух объектов с подсчетом процентов
+function isEqual(answerList, answerListTrue) { // сравнение двух объектов с подсчетом процентов
 
     populateHeader(sysAdminTest);
 
@@ -212,13 +237,13 @@ function isEqual(answerList, answerListTrue) {  // сравнение двух �
 }
 
 
-function checkTest() {  // проверка результатов теста
+function checkTest() { // проверка результатов теста
     userButtonTest.disabled = false;
 
     // let selectedAns = 0;
     // let questions;
 
-    sysAdminTest.survey.map(item => {   //sysAdminTest["survey"].map(item => {
+    sysAdminTest.survey.map(item => { //sysAdminTest["survey"].map(item => {
         answerListTrue[item.numberTest] = item.right;
     });
     delete answerListTrue[0]; //answerListTrue["0"] // убираем парковочный ответ
@@ -244,7 +269,7 @@ function checkTest() {  // проверка результатов теста
 
 }
 
-const testCount = () => {   // счетчик попыток
+const testCount = () => { // счетчик попыток
     let count = Number(localStorage.getItem('count')) || 0;
     // console.log("count_= " + count);
     count++;
