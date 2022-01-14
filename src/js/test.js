@@ -106,11 +106,8 @@ function showTest(obj) { // формирование и вывод прямог�
             testNumberArr.push( questions[key].numberTest );
         }
         testNumberArr.shift() ; //  del parking 0
-        randomArr(testNumberArr);
-        randomArr(testNumberArr);
-    // console.log("--------------");
+    
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 
     let x = testNumberArr;
 // check break in number question json, else err
@@ -126,7 +123,9 @@ function showTest(obj) { // формирование и вывод прямог�
         console.log(`ожидаелся номер:${x.length}, а получен:${x[x.length-1]}`);
     }
     
-
+    randomArr(testNumberArr);
+        randomArr(testNumberArr);
+    console.log(testNumberArr);
 
     for (let i = 0; i < x.length; i++) {
         
