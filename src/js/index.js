@@ -51,6 +51,9 @@ function lengthObj(Obj) { //old`s
 //     return Object.keys(Obj).length;
 // }
 
+function contains(arr, elem) {
+    return arr.find((i) => i === elem) != -1;
+}
 
 // const {mm1} = myObject.n5; // get block from obj
 

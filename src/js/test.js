@@ -99,13 +99,7 @@ function showTest(obj) { // формирование и вывод прямог�
 
     // рандом в первый раз раз запускать пустой, второй рабочий
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // randomObj(myObject);
-    // console.log(randomObj(myObject)); //
-    // console.log(randomObj(myObject));
-    // console.log(randomObj(myObject));
-
-
-    console.log("+++++++++++++++++++++++++++");
+    // console.log("+++++++++++++++++++++++++++");
     let testNumberArr = []; // get all number test in Arr & randomize
         // for (let i = 1; i < questions.length; i++) { 
         for (let key in questions) {    
@@ -113,21 +107,15 @@ function showTest(obj) { // формирование и вывод прямог�
         }
         testNumberArr.shift() ; //  del parking 0
         randomArr(testNumberArr);
-    console.log("--------------");
-
-
-    // console.log(questions.map(function (y) {return y}));
+        randomArr(testNumberArr);
+    // console.log("--------------");
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-    // let arrNumberQwestion ; // исправить на получение из json
-    //    let arrNumberQwestion = sysAdminTest.numberTest.parse({});
-
-    function contains(arr, elem) {
-        return arr.find((i) => i === elem) != -1;
-    }
-
-    for (let i = 1; i < questions.length; i++) {
+    let x = testNumberArr;
+    console.log(x);
+    for (let i = 0; i < x.length; i++) {
+        
         const myArticle = document.createElement("article");
         const testNumber = document.createElement("h2");
         const testQuestion = document.createElement("h5");
@@ -137,32 +125,37 @@ function showTest(obj) { // формирование и вывод прямог�
 
         myArticle.setAttribute("class", "test");
 
-        testNumber.textContent = questions[i].numberTest;
-        testQuestion.textContent = "Вопрос: " + questions[i].question;
-        testVariants.textContent = "Варианты ответов: " + questions[i].answers;
+        testNumber.textContent = i + 1 ; //questions[x[i]].numberTest;
+        testQuestion.textContent = "Вопрос: " + questions[x[i]].question;
+        testVariants.textContent = "Варианты ответов: " + questions[x[i]].answers;
         testAnswer.textContent =
             "Правильный ответ: " +
-            questions[i].right +
+            questions[x[i]].right +
             " - " +
-            questions[i].justification;
+            questions[x[i]].justification;
 
         const radioAnswerList = document.createElement("div");
-        const variantAnswer = questions[i].answers;
-
-        // !!!!!!!!!!! do there
-
-
-        for (let j = 1; j < variantAnswer.length; j++) {
-            // const listItem = document.createElement("li");
-            const radioAnswer = document.createElement("div");
-            radioAnswer.innerHTML =
-                `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},
-                                ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
-            radioAnswerList.appendChild(radioAnswer);
-        }
+        const variantAnswer = questions[x[i]].answers;
+        // !!!!!!!!!!! do there, it`s backup
+        // for (let j = 1; j < variantAnswer.length; j++) {
+        //     // const listItem = document.createElement("li");
+        //     const radioAnswer = document.createElement("div");
+        //     radioAnswer.innerHTML =
+        //         `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},
+        //                         ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
+        //     radioAnswerList.appendChild(radioAnswer);
         // }
+                for (let j = 1; j < variantAnswer.length; j++) {
+
+                    // const listItem = document.createElement("li");
+                    const radioAnswer = document.createElement("div");
+                    radioAnswer.innerHTML =
+                        `<input type='radio' name='answer${x[i]}' value='${j}' onClick='onChangeButtonValue(${x[i]},
+                                        ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
+                    radioAnswerList.appendChild(radioAnswer);
+                }
         // console.log("arrNewForCheck= "+arrNewForCheck);
-        answerList[i] = 0;
+    //  answerList[i] = 0;
 
         myArticle.appendChild(testNumber);
         myArticle.appendChild(testQuestion);
