@@ -1,6 +1,8 @@
 // скрипты для страницы тест
 // const gulpLodash = require('gulp-lodash');
 
+// const { keys } = require("lodash");
+
 
 // !!!!!!!!!!!!!! пока не работает импорт, делать по другому
 // подключаем библиотеку Лодаш
@@ -51,6 +53,7 @@ function randomArr(arr) { // перемещать мессив
     arr.sort(() => Math.random() - 0.5);
 }
 
+
 function randomObj(obj) { // shuffle// перемещать объект
     let newObj = {};
     let keys = Object.keys(obj);
@@ -68,6 +71,12 @@ function randomObj(obj) { // shuffle// перемещать объект
 function onChangeButtonValue(num, value) {
     answerList[num] = value;
 }
+
+
+function lengthObj2(Obj) {
+    return Object.keys(Obj).length;
+}
+
 //  тренировочный объект
 const myObject = {
     'n1': '1',
@@ -80,7 +89,10 @@ const myObject = {
         mm3: 1003
     }
 }; // в json 'numberTest'
-let myArr = [];
+let myArray = [1, 10, 2, 14, 20, 44, 4 ,7];
+
+
+ 
 
 function showTest(obj) { // формирование и вывод прямого теста
     const questions = obj.survey;
@@ -93,29 +105,14 @@ function showTest(obj) { // формирование и вывод прямог�
     // console.log(randomObj(myObject));
 
 
-    // Object.keys(myObject).map(function (key, index) {
-    //     myObject[key] *= 2;
-    // });
-    // myArr = Object.values(myObject); // этой строкой преобразуем объект в массив
-
-    // console.log(myObject.n5);
-    // console.log(myArr);
-
-    // console.log(typeof(myObject) );
     console.log("+++++++++++++++++++++++++++");
-    for (let key in myObject) {
-        // delete questions[key][0] ;// ["0"];
-        // console.log("key_", typeof(myObject[key]) );
-
-        if (typeof (myObject[key]) === 'object') {
-            for (let key2 in myObject[key]) {
-                // console.log("[key2_",typeof(myObject[key][key2]) );
-                console.log("key2__", key2, "--", myObject[key][key2]);
-            }
-        } else {
-            console.log("key_", key, "--", myObject[key]);
+    let testNumberArr = []; // get all number test in Arr & randomize
+        // for (let i = 1; i < questions.length; i++) { 
+        for (let key in questions) {    
+            testNumberArr.push( questions[key].numberTest );
         }
-    }
+        testNumberArr.shift() ; //  del parking 0
+        randomArr(testNumberArr);
     console.log("--------------");
 
 
