@@ -113,7 +113,21 @@ function showTest(obj) { // формирование и вывод прямог�
 
 
     let x = testNumberArr;
-    console.log(x);
+// check break in number question json, else err
+    // console.log(typeof(x));
+    x.sort(compareNum);
+
+    function compareNum (a, b) {
+        return a - b;
+    }
+    if (x[x.length-1] !== x.length) {
+        alert("произошла ошибка, свяжитесь с администратором admin@mail.net");
+        console.log("ошибка в порядке номеров json");
+        console.log(`ожидаелся номер:${x.length}, а получен:${x[x.length-1]}`);
+    }
+    
+
+
     for (let i = 0; i < x.length; i++) {
         
         const myArticle = document.createElement("article");
@@ -136,15 +150,6 @@ function showTest(obj) { // формирование и вывод прямог�
 
         const radioAnswerList = document.createElement("div");
         const variantAnswer = questions[x[i]].answers;
-        // !!!!!!!!!!! do there, it`s backup
-        // for (let j = 1; j < variantAnswer.length; j++) {
-        //     // const listItem = document.createElement("li");
-        //     const radioAnswer = document.createElement("div");
-        //     radioAnswer.innerHTML =
-        //         `<input type='radio' name='answer${i}' value='${j}' onClick='onChangeButtonValue(${i},
-        //                         ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
-        //     radioAnswerList.appendChild(radioAnswer);
-        // }
                 for (let j = 1; j < variantAnswer.length; j++) {
 
                     // const listItem = document.createElement("li");
@@ -154,8 +159,6 @@ function showTest(obj) { // формирование и вывод прямог�
                                         ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
                     radioAnswerList.appendChild(radioAnswer);
                 }
-        // console.log("arrNewForCheck= "+arrNewForCheck);
-    //  answerList[i] = 0;
 
         myArticle.appendChild(testNumber);
         myArticle.appendChild(testQuestion);
