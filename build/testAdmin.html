@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/test.css">
-    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
     <head> 
       <link rel="icon" href="./img/favicon.ico">
       <title>SysAdminTest</title>
@@ -28,34 +27,31 @@
   <body id="test">
     <div class="container">
       <div>
-        <p id="autorization">
-          Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
-          статистики</b> и никуда не будут переданы ;)
-        </p>
+        <p id="autorization">нажмите <b>авторизоваться</b>; &nbsp&nbsp&nbsp  затем напишите ваше имя &nbsp&nbsp&nbsp =)</p>
         <div class="row">
           <div class="col">
             <div class="form-check form-switch">
-              <input class="form-check-input" id="flexSwitchCheckDefault1" onclick="disableButton1()" type="checkbox">
+              <input class="form-check-input" id="flexSwitchCheckDefault1" onclick="oneMoreButton()" type="checkbox">
               <label class="form-check-label" for="flexSwitchCheckDefault1">тесты <b>все подряд</b> или по одному</label>
             </div>
           </div>
           <div class="col"> 
-            <div class="form-check form-switch">
-              <input class="form-check-input" id="flexSwitchCheckDefault" onclick="disableButton()" type="checkbox">
-              <label class="form-check-label" for="flexSwitchCheckDefault">авторизоваться, чтобы пройти тесты</label>
+            <div class="form-check form-switch red" id="autorize">
+              <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox">
+              <label class="form-check-label" for="flexSwitchCheckDefault"><b> авторизоваться</b> , чтобы пройти тесты</label>
             </div>
           </div>
         </div>
         <form action="">
           <div class="row">
             <div class="col">
-              <input class="form-control" id="userName" type="text" placeholder="Штирлиц" disabled="true" label="qwe">
+              <input class="form-control" id="inputUserName" type="text" placeholder="Штирлиц" disabled="true" label="qwe">
             </div>
             <div class="col">
-              <input class="form-control" id="userOrg" type="text" placeholder="ООО Тайное Общество" disabled="true" required="true">
+              <input class="form-control" id="inputUserOrg" type="text" placeholder="ООО Тайное Общество" disabled="true" required="true">
             </div>
             <div class="col">
-              <button class="btn btn-warning" id="userButton" onclick="doStartTest()" type="button" disabled="true"> &nbsp&nbsp>&nbsp>&nbsp>&nbsp&nbsp&nbspЭто&nbspЯ,&nbspможно&nbspначинать&nbspтест&nbsp&nbsp&nbsp<&nbsp<&nbsp<&nbsp&nbsp</button>
+              <button class="btn btn-warning" id="btnStartTest" type="button" disabled="true"> &nbsp&nbsp>&nbsp>&nbsp>&nbsp&nbsp&nbspЭто&nbspЯ,&nbspможно&nbspначинать&nbspтест&nbsp&nbsp&nbsp<&nbsp<&nbsp<&nbsp&nbsp</button>
             </div>
           </div>
         </form>
@@ -64,17 +60,20 @@
         <p>+</p>
       </section>
       <div class="col">
-        <div class="btn btn-success" id="userButtonTest" onclick="checkTest()" type="button" disabled="true">ТЕСТ</div>
+        <div class="btn btn-success" id="btnCheckTest" type="button" disabled="true">ТЕСТ</div>
       </div>
       <section id="bottom">
         <p>результаты:</p>
         <h1 class="rezult"></h1>
       </section>
     </div>
+    <button id="run">Новая попытка</button>
+    <div id="result"> </div>
     <footer class="footer page-footer font-small blue" style="width: 100%">
-      <section class="footer-copyright text-center py-3">
+      <section class="footer-copyright text-center py-2">
         <hr>
-        <p> сейчас делаю: вывод тестов в случайном порядке и по одному </p>
+        <p> сейчас делаю: вывод тестов  по одному </p>
+        <p>сломал парковочный ответ(0), пока вывожу алерт</p>
       </section>
       <hr>
       <div class="footer-copyright text-center py-3">© 2021 Copyright <b>Musa</b></div>

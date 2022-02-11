@@ -26,34 +26,39 @@ const iqFunction = () => {
     // }, 5000)
 };
 
-// просто прикольно резобрать 
+// просто прикольно after резобрать fun 
 //function A(){$c=0;foreach($_SESSION['test']['objects'] as &$o){if($o['type']==1&&isset($o['an'])&&$o['an'])$c++;}return $c;}
-function sortStrArr(arr) { //сотрируем строковый массив
-    arr.sort();
-    return arr;
-}
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ниже набор разных функций, писал походу, но потом не понадобились
 
-function sortNumArr(arr) { //сотрируем числовой массив
-    arr.sort(compareNum);
-    function compareNum (a, b) {
-        return a - b;
-    }
-    return arr;
-}
-function lengthObj(Obj) { //old`s
-    let counter = 0;
-    for (let key in Obj) {
-        counter ++;
-    }
-    return counter;
-}
-// function lengthObj2(Obj) {
+// function sortStrArr(arr) { //сотрируем строковый массив
+//     arr.sort();
+//     return arr;
+// }
+
+// function sortNumArr(arr) { //сотрируем числовой массив
+//     arr.sort(compareNum);
+//     function compareNum (a, b) {
+//         return a - b;
+//     }
+//     return arr;
+// }
+
+// function lengthObj(Obj) { //old`s длина объекта
+//     let counter = 0;
+//     for (let key in Obj) {
+//         counter ++;
+//     }
+//     return counter;
+// }
+
+// function lengthObj2(Obj) {   //длина объекта
 //     return Object.keys(Obj).length;
 // }
 
-function contains(arr, elem) {
-    return arr.find((i) => i === elem) != -1;
-}
+// function contains(arr, elem) {   //поиск элемента в массиве
+//     return arr.find((i) => i === elem) != -1;
+// }
 
 // const {mm1} = myObject.n5; // get block from obj
 
@@ -62,4 +67,10 @@ function contains(arr, elem) {
     // });
     // myArr = Object.values(myObject); // этой строкой преобразуем объект в массив
 
-   
+   // работает вывод всего содержимого localStorage
+    // const LS = { ...localStorage };
+    // console.log(LS);
+    //---------------
+    // localStorage.setItem(i, '0');
+    //   localStorage.getItem(j) 
+

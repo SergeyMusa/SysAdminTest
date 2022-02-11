@@ -8,7 +8,7 @@ html(lang='ru')
         link(rel="stylesheet" type="text/css" href="css/test.css")
 
         //- ~~~~~~~ ЧТО ЭТО \/--------------
-        link(href='https://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet')
+        //- link(href='https://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet')
         //- link(rel='stylesheet' href='../../assets/css/app.min.css')
         include components/head.pug
 
@@ -19,34 +19,34 @@ html(lang='ru')
         .container
             div
                 p#autorization
-                    | Требуется авторизоваться, чтобы пройти тесты;  ваши данные нужны <b>только для
-                    | статистики</b> и никуда не будут переданы ;)
+                    | нажмите <b>авторизоваться</b>; &nbsp&nbsp&nbsp  затем напишите ваше имя &nbsp&nbsp&nbsp =)
                 //- <p> Рекомендую использовать случайные сочетания клавиш, вы же как истинный шпион должны всегда скрываете себя )</p>
                 .row
                     .col
                         .form-check.form-switch
-                            input#flexSwitchCheckDefault1.form-check-input(onclick='disableButton1()' type='checkbox')
+                            input#flexSwitchCheckDefault1.form-check-input(onclick='oneMoreButton()' type='checkbox')
                             label.form-check-label(for='flexSwitchCheckDefault1')
                                 | тесты <b>все подряд</b> или по одному
                     .col 
-                        .form-check.form-switch
-                            input#flexSwitchCheckDefault.form-check-input(onclick='disableButton()' type='checkbox')
+                        .form-check.form-switch.red#autorize
+                            input#flexSwitchCheckDefault.form-check-input( type='checkbox')
                             label.form-check-label(for='flexSwitchCheckDefault')
-                                | авторизоваться, чтобы пройти тесты
+                                | <b> авторизоваться</b> , чтобы пройти тесты
                 form(action='')
                     .row
                         .col
-                            input#userName.form-control(type='text' placeholder='Штирлиц' disabled='true' label='qwe')
+                            input#inputUserName.form-control(type='text' placeholder='Штирлиц' disabled='true' label='qwe')
                         .col
-                            input#userOrg.form-control(type='text' placeholder='ООО Тайное Общество' disabled='true' required='true')
+                            input#inputUserOrg.form-control(type='text' placeholder='ООО Тайное Общество' disabled='true' required='true')
                         .col
-                            button#userButton.btn.btn-warning(onclick='doStartTest()' type='button' disabled='true')
+                            //- #userButton - onclick='doStartTest()'
+                            button#btnStartTest.btn.btn-warning( type='button' disabled='true')
                                 |  &nbsp&nbsp>&nbsp>&nbsp>&nbsp&nbsp&nbspЭто&nbspЯ,&nbspможно&nbspначинать&nbspтест&nbsp&nbsp&nbsp<&nbsp<&nbsp<&nbsp&nbsp
             section#top
                 p +
                 
             .col
-                div#userButtonTest.btn.btn-success(onclick='checkTest()' type='button' disabled='true')
+                div#btnCheckTest.btn.btn-success( type='button' disabled='true')
                     | ТЕСТ
 
             section#bottom
@@ -54,6 +54,10 @@ html(lang='ru')
                 h1.rezult
 
         //- #pageWrapper.page-wrapper
+
+        //- тест промисов- удалить
+        button#run Новая попытка
+        #result 
     
         include components/footer.pug
 
