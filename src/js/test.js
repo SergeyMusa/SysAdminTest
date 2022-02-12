@@ -9,29 +9,31 @@
 // console.log(gulpLodash.isEqual(1, 2));
 // gulpLodash('Rainbow');
 
-let requestURL = "./json/test.json",
-    request = new XMLHttpRequest();
-    request.open("GET", requestURL);
-    request.responseType = "json";
-    request.send();
+// const {
+//     Button
+// } = require("bootstrap");
+
+
 
 const header = document.querySelector("header"),
-      section = document.querySelector("#top"),
-      checkerAutorize = document.querySelector('#autorize'),
-      btnCheckTest = document.querySelector('.btn-success'), //btnCheckTest
-      btnStartTest = document.querySelector('#btnStartTest'),
-      inputUserOrg = document.querySelector('#inputUserOrg'),
-      inputUserName = document.querySelector('#inputUserName');
-   
+    section = document.querySelector("#top"),
+    checkerAutorize = document.querySelector('#checkerAutorize'),
+    checkerOneAll = document.querySelector('#checkerOneAll'),
+    btnCheckTest = document.querySelector('.btn-success'), //btnCheckTest
+    btnStartTest = document.querySelector('#btnStartTest'),
+    inputUserOrg = document.querySelector('#inputUserOrg'),
+    inputUserName = document.querySelector('#inputUserName');
+
 let checkboxClick = document.querySelector("#flexSwitchCheckDefault");
 
 // userButtonTest.disabled = false;
 const answerList = {},
-      answerListTrue = {};
+    answerListTrue = {};
+
 let equal = '',
     sysAdminTest = '',
-    timeBeginTest = 0;
-    
+    timeBeginTest;
+
 
 // //  тренировочный объект
 // const myObject = {
@@ -49,48 +51,138 @@ let equal = '',
 
 //-------------------------------------------------------------------------------    
 // request.onload = function () {
-const generationTest = () => {
-    sysAdminTest = request.response;
-    showTest(sysAdminTest);
-    // testCount(sysAdminTest);
-};
 
+const requestURL = "./json/test.json",
+    request = new XMLHttpRequest();
+request.open("GET", requestURL);
+request.responseType = "json";
+request.send();
 
 
 
 //=====NEW Promise=======================================================
-{/* <div><button id="run">Новая попытка</button></div>
-<div id="result"></div> */}
 
-let isProcess = false;
 const elResult = document.querySelector('#result');
 
-  document.querySelector('#run').onclick = () => {
-    if (isProcess) {
-      elResult.textContent = 'Подождите! Задача ещё выполняется!';
-      return;
-    }
-    isProcess = true;
-    elResult.textContent = 'Задача в процессе...';
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const mark = Math.floor(Math.random() * 4) + 2;
-        mark > 3 ? resolve(mark) : reject(mark);
-      }, 3000);
-    });
-    promise
-      .then(value => {
-        elResult.textContent = `Ура! Вы сдали экзамен на ${value}! Папа, как и обещал дал вам 100$.`;
-      })
-      .catch(value => {
-        elResult.textContent = `Увы, вы получили оценку ${value}! Папа не дал вам 100$`;
-      })
-      .finally(() => {
-        isProcess = false;
-      });
-  };
+function loadJson() {
+    console.log("loadJson...");
+    elResult.textContent = 'Идет загрузка данных...';
+
+    return new Promise((resolve, reject) => {
+            resolve = () => {
+                const requestURL = "./json/test.json",
+                    request = new XMLHttpRequest();
+                request.open("GET", requestURL);
+                request.responseType = "json";
+                request.send();
+            };
+            reject();
+        })
+        .then(value => {
+            elResult.textContent += `Загрузка успешно завершена - ${value}`;
+            console.log("Загрузка успешно завершена -");
+
+            sysAdminTest = request.response;
+            showTest(sysAdminTest);
+            console.log(sysAdminTest);
+            // return;
+        })
+        .catch(value => {
+            elResult.textContent += `Ошибка загрузки`;
+            console.log("Ошибка загрузки");
+        })
+        .finally(() => {
+            console.log("...");
+            // isProcess = false;
+        });
+}
+
 //============================================================
 
+
+checkerAutorize.addEventListener('click', (event) => {
+    togleInput();
+    event.target.remove();
+    //-- NEW CODE
+    // console.log(checkerAutorize);
+
+    timeBeginTest = getTime();
+    console.log(timeBeginTest);
+});
+
+
+
+function togleInput() {
+    // thing.classlist.toggle.disabled ? true: false;
+    // let isHidden = thing.classlist.disabled; 
+    // console.log('hide ', isHidden);
+    const alertRed = document.getElementById('autorization');
+
+    if (checkboxClick.checked == false) {
+        inputUserName.setAttribute('disabled', true);
+        inputUserOrg.setAttribute('disabled', true);
+        btnStartTest.disabled = true;
+    } else {
+        inputUserName.disabled = false;
+        inputUserOrg.disabled = false;
+        btnStartTest.disabled = false;
+        alertRed.hidden = true;
+        checkerAutorize.style.color = "black";
+    }
+    checkboxClick.checked = false;
+}
+
+
+btnStartTest.addEventListener('click', (event) => { //const doStartTest = () => {
+    const randomUser = randomInteger(100, 999);
+    // выбираем имя по умолчанию если не введено что-то другое и заносим в локал сторадж
+    inputUserName.placeholder = inputUserName.placeholder + "_" + randomUser;
+    let user = inputUserName.placeholder;
+    let org = inputUserOrg.placeholder;
+
+    if (inputUserName.value !== "" && inputUserOrg.value !== "") {
+        // userName.placeholder = "Сыкло )";
+        user = `"${inputUserName.value}"`;
+        org = `"${inputUserOrg.value}"`;
+    }
+
+    localStorage.setItem('user', user);
+    localStorage.setItem('org', org);
+    // localStorage.setItem('timer', timer);
+    // console.log(
+    //   localStorage.getItem('user') + ' ' + localStorage.getItem('org')
+    // );
+
+    togleInput();
+    btnStartTest.disabled = true;
+    btnCheckTest.disabled = false;
+    // event.target.remove();
+
+    sysAdminTest = request.response;
+
+    (checkerOneAll.checked) ? doTest(sysAdminTest, 'One'): doTest(sysAdminTest, 'All');
+});
+
+
+
+btnCheckTest.addEventListener('click', () => { //userButtonTest //userButtonTest
+    btnCheckTest.disabled = true;
+
+    sysAdminTest.survey.map(item => { //sysAdminTest["survey"].map(item => {
+        answerListTrue[item.numberTest] = item.right;
+    });
+    // delete answerListTrue[0]; //answerListTrue["0"] // убираем парковочный ответ ??
+
+    // console.log("answerList____: ", answerList);
+    // console.log('answerListTrue: ', answerListTrue);
+
+    equal = isEqual(answerList, answerListTrue);
+    // console.log('isEqual_', equal);
+    // console.log('al=', Object.keys(answerList).length);
+
+    testCount();
+    getTime();
+});
 
 
 // ПЕРЕЛЕДАТЬ
@@ -115,24 +207,32 @@ function lengthObj2(Obj) {
     return Object.keys(Obj).length;
 }
 
+function onChangeButtonValue2(num, value) {
+    // answerList[num] = value;
+    console.log(answerList[num] = value);
+}
 
-function showTest(obj) { // формирование и вывод прямого теста
-    const questions = obj.survey;
+
+let x = 0,
+    questions = '';
+
+function randomQuestion(obj) {
+    questions = obj.survey;
 
     let testNumberArr = []; // get all number test in Arr & randomize
-    // for (let i = 1; i < questions.length; i++) { 
-    for (let key in questions) {
+    
+    for (let key in questions) { // for (let i = 1; i < questions.length; i++) { 
         testNumberArr.push(questions[key].numberTest);
     }
     testNumberArr.shift(); //  del parking 0
 
-    let x = testNumberArr;
-    // check break in number question json, else err
-    // console.log(typeof(x));
-    x.sort(compareNum);
+    x = testNumberArr;
+    x.sort(compareNum);// check break in number question json, else err
+
     function compareNum(a, b) {
         return a - b;
     }
+    
     if (x[x.length - 1] !== x.length) {
         alert("произошла ошибка, свяжитесь с администратором admin@mail.net");
         console.log("ошибка в порядке номеров json");
@@ -141,21 +241,47 @@ function showTest(obj) { // формирование и вывод прямог�
 
     randomArr(testNumberArr); // рандом в первый раз раз запускать пустой, второй рабочий
     randomArr(testNumberArr);
-    console.log(testNumberArr);
+    // console.log(testNumberArr);
+    return testNumberArr;
+}
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// -------do there-------
-    for (let i = 0; i < x.length; i++) {
 
-        const myArticle = document.createElement("article");
-        const testNumber = document.createElement("h2");
-        const testQuestion = document.createElement("h5");
-        const testVariants = document.createElement("p");
-        const testAnswer = document.createElement("p");
-        // const myList = document.createElement("ul");
 
-        myArticle.setAttribute("class", "test");
+function doTest(obj, how) { // формирование и вывод прямого теста
 
+    randomQuestion(obj);
+    console.log(x);
+    // -------do there-------
+    const myArticle = document.createElement("article"),
+        testNumber = document.createElement("h2"),
+        testQuestion = document.createElement("h5"),
+        testVariants = document.createElement("p"),
+        testAnswer = document.createElement("p");
+    //myList = document.createElement("ul");
+
+    const answerList = document.createElement("div");
+    let variantAnswer = '';
+
+    myArticle.setAttribute("class", "test");
+
+
+    if (how == 'All') {
+        for (let i = 0; i < x.length; i++) {
+            variantAnswer = questions[x[i]].answers;
+            testNumber.textContent = i + 1; //отображаемый number
+            testQuestion.textContent = "Вопрос: " + questions[x[i]].question;
+            testVariants.textContent = "Варианты ответов: " + questions[x[i]].answers;
+            testAnswer.textContent =
+                "Правильный ответ: " +
+                questions[x[i]].right +
+                " - " +
+                questions[x[i]].justification;
+
+            showQuestion(i);
+        }
+    } else { //(how == 'One')
+        let i = 0;
+        variantAnswer = questions[x[i]].answers;
         testNumber.textContent = i + 1; //отображаемый number
         testQuestion.textContent = "Вопрос: " + questions[x[i]].question;
         testVariants.textContent = "Варианты ответов: " + questions[x[i]].answers;
@@ -165,22 +291,32 @@ function showTest(obj) { // формирование и вывод прямог�
             " - " +
             questions[x[i]].justification;
 
-        const radioAnswerList = document.createElement("div");
-        const variantAnswer = questions[x[i]].answers;
-        for (let j = 1; j < variantAnswer.length; j++) {
+        showQuestion(i);
 
+        for (let i = 0; i < x.length; i++) {
+            const answerButton = document.createElement("div");
+            answerButton.innerHTML = `
+            <button type='button' onClick='onChangeButtonValue2(${x[i]})' >${i+1}</button>
+            `;
+            answerList.appendChild(answerButton);
+            
+        }
+    }
+
+    function showQuestion(i) {
+        for (let j = 1; j < variantAnswer.length; j++) {
             // const listItem = document.createElement("li");
             const radioAnswer = document.createElement("div");
             radioAnswer.innerHTML =
                 `<input type='radio' name='answer${x[i]}' value='${j}' onClick='onChangeButtonValue(${x[i]},
                                         ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
-            radioAnswerList.appendChild(radioAnswer);
+            answerList.appendChild(radioAnswer);
         }
 
         myArticle.appendChild(testNumber);
         myArticle.appendChild(testQuestion);
         //
-        myArticle.appendChild(radioAnswerList);
+        myArticle.appendChild(answerList);
         // myArticle.appendChild(testAnswer);   // ответ
         section.appendChild(myArticle);
     }
@@ -248,103 +384,6 @@ function isEqual(answerList, answerListTrue) { // сравнение двух о
 }
 
 
-btnCheckTest.addEventListener('click', () => { //userButtonTest //userButtonTest
-    btnCheckTest.disabled = true;
 
-    sysAdminTest.survey.map(item => { //sysAdminTest["survey"].map(item => {
-        answerListTrue[item.numberTest] = item.right;
-    });
-    delete answerListTrue[0]; //answerListTrue["0"] // убираем парковочный ответ
-
-    console.log("answerList____: ", answerList);
-    console.log('answerListTrue: ', answerListTrue);
-
-    // !!!!!!!!!!!!! делаю тут
-    equal = isEqual(answerList, answerListTrue);
-    console.log('isEqual_', equal);
-
-    console.log('al=', Object.keys(answerList).length);
-    // !!!!!!!!!!!!! делаю тут
-
-    testCount();
-    getTime();
-// }
-});
-
-
-checkerAutorize.addEventListener ('click', (event) =>{
-    togleInput();
-    event.target.remove();
-      //-- NEW CODE
-      // console.log(checkerAutorize);
-     
-    timeBeginTest = getTime();
-    console.log(timeBeginTest);
-  });
-    
-  
-
-function togleInput() {
-    // thing.classlist.toggle.disabled ? true: false;
-    // let isHidden = thing.classlist.disabled; 
-    // console.log('hide ', isHidden);
-    const alertRed = document.getElementById('autorization');
-    // const cheker = document.querySelector('#flexSwitchCheckDefault'); // getElementById('autorization');
-
-// console.log(cheker.checked);
-    if (checkboxClick.checked == false) {
-        inputUserName.setAttribute('disabled', true) ;
-        inputUserOrg.setAttribute('disabled', true) ;
-        btnStartTest.disabled = true;
-        // alertRed.hidden = false;
-        // checkboxClick.checked = true;
-    } else {
-        inputUserName.disabled = false;
-        inputUserOrg.disabled = false;
-        btnStartTest.disabled = false;
-        alertRed.hidden = true;
-        checkerAutorize.style.color = "black";
-    }
-    checkboxClick.checked = false;
-    // console.log('checkboxClick= ', checkboxClick.checked);
-    // console.log(inputUserName);
-}
-
-
-
-// выбираем имя по умолчанию если не введено что-то другое и заносим в локал сторадж
-btnStartTest.addEventListener('click', (event) => { //const doStartTest = () => {
-  const randomUser = randomInteger(100, 999);
-
-  inputUserName.placeholder = inputUserName.placeholder + "_" + randomUser;
-  let user = inputUserName.placeholder;
-  let org = inputUserOrg.placeholder;
-
-  if (inputUserName.value !== "" && inputUserOrg.value !== "") {
-    // userName.placeholder = "Сыкло )";
-    user = `"${inputUserName.value}"`;
-    org = `"${inputUserOrg.value}"`;
-  }
-
-  localStorage.setItem('user', user);
-  localStorage.setItem('org', org);
-  // localStorage.setItem('timer', timer);
-
-  // console.log(
-  //   localStorage.getItem('user') + ' ' + localStorage.getItem('org')
-  // );
-
-  console.log('checkboxClick= ', checkboxClick.checked);
-  togleInput();
-  console.log('checkboxClick= ', checkboxClick.checked);
-
-  btnStartTest.disabled = true;
-//   flexSwitchCheckDefault.disabled = true;
-  btnCheckTest.disabled = false;
-// event.target.remove();
-
-  generationTest();
-
-});
 //====================================
 //

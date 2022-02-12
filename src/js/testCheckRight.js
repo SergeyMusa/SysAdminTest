@@ -29,4 +29,55 @@
 
 const checkTestRight = () => {
     console.log('Right');
-} 
+}; 
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+// правильные ответы можно выводить все вместе внизу
+// потом сделать - перерисовать тест с выделением правильный
+
+
+
+
+// 'use strict';
+// const fs = require('fs');
+
+// const loadJSON = (filepath) => {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(filepath, 'utf8', (err, content) => {
+//       if(err) {
+//         reject(err)
+//       } else {
+//         try {
+//           resolve(JSON.parse(content));
+//         } catch(err) {
+//           reject(err)
+//         }
+//       }
+//     })
+//   });
+// }
+
+// loadJSON(`${__dirname}/pareto.json`)
+// .then(console.log)
+// .catch(console.log);
+
+
+
+// function getJSON(url) {
+//     return new Promise(function(resolve, reject) {
+//         const req = https.get(url, res => {
+//             let json = '';
+//             res.on('data', function(chunk) { json += chunk; });
+//             res.on('end', function() { resolve(JSON.parse(json)); });
+//         });
+//         req.on('error', function(err) { console.log(err); });
+//     });
+// };
+
+// const weather = () => {
+
+//     getJSON('yourURL')
+//         .then((data) => console.log(data))
+//         .catch((error) => console.error(error));
+// }

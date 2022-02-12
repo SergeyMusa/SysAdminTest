@@ -31,12 +31,12 @@
         <div class="row">
           <div class="col">
             <div class="form-check form-switch">
-              <input class="form-check-input" id="flexSwitchCheckDefault1" onclick="oneMoreButton()" type="checkbox">
-              <label class="form-check-label" for="flexSwitchCheckDefault1">тесты <b>все подряд</b> или по одному</label>
+              <input class="form-check-input" id="checkerOneAll" type="checkbox">
+              <label class="form-check-label" for="checkerOneAll">тесты <b>все подряд</b> или по одному</label>
             </div>
           </div>
           <div class="col"> 
-            <div class="form-check form-switch red" id="autorize">
+            <div class="form-check form-switch red" id="checkerAutorize">
               <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox">
               <label class="form-check-label" for="flexSwitchCheckDefault"><b> авторизоваться</b> , чтобы пройти тесты</label>
             </div>
@@ -67,7 +67,7 @@
         <h1 class="rezult"></h1>
       </section>
     </div>
-    <button id="run">Новая попытка</button>
+    <button id="run" onclick="loadJson()" type="button">Новая попытка</button>
     <div id="result"> </div>
     <footer class="footer page-footer font-small blue" style="width: 100%">
       <section class="footer-copyright text-center py-2">
