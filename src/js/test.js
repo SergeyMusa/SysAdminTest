@@ -77,7 +77,7 @@ function loadJson() {
         if (res === 'ok') {
             resolve()
         }
-        
+
     });
 
     promise.then(resolve => {
@@ -136,10 +136,20 @@ checkerAutorize.addEventListener('click', (event) => {
     // console.log(checkerAutorize);
 
     timeBeginTest = getTime();
-    console.log(timeBeginTest);
+    // надо убрать в функции вывод в консоль и сделать заносить значение в объект Анкета
+    // console.log("timeBeginTest_"+timeBeginTest);
 });
 
 
+checkerOneAll.addEventListener('click', (event) => {
+    let labelOneAll = document.getElementById('labelOneAll');
+
+    if (checkerOneAll.checked === true) {
+        labelOneAll.innerHTML = 'тесты все подряд или <b>по одному</b>';
+    } else {
+        labelOneAll.innerHTML = 'тесты <b>все подряд</b> или по одному';
+    }
+});
 
 function togleInput() {
     // thing.classlist.toggle.disabled ? true: false;
@@ -159,6 +169,7 @@ function togleInput() {
         checkerAutorize.style.color = "black";
     }
     checkboxClick.checked = false;
+
 }
 
 
@@ -204,6 +215,7 @@ btnCheckTest.addEventListener('click', () => { //userButtonTest //userButtonTest
 
     // console.log("answerList____: ", answerList);
     // console.log('answerListTrue: ', answerListTrue);
+
 
     equal = isEqual(answerList, answerListTrue);
     // console.log('isEqual_', equal);
