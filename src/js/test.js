@@ -68,34 +68,63 @@ function loadJson() {
     console.log("loadJson...");
     elResult.textContent = 'Идет загрузка данных...';
 
-    return new Promise((resolve, reject) => {
-            resolve = () => {
-                const requestURL = "./json/test.json",
-                    request = new XMLHttpRequest();
-                request.open("GET", requestURL);
-                request.responseType = "json";
-                request.send();
-            };
-            reject();
-        })
-        .then(value => {
-            elResult.textContent += `Загрузка успешно завершена - ${value}`;
-            console.log("Загрузка успешно завершена -");
+    const promise = new Promise((resolve, reject) => {
+        const requestURL = "./json/test.json",
+            request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+        request.responseType = "json";
+        request.send();
+        if (res === 'ok') {
+            resolve()
+        }
+        
+    });
 
-            sysAdminTest = request.response;
-            showTest(sysAdminTest);
-            console.log(sysAdminTest);
-            // return;
-        })
-        .catch(value => {
-            elResult.textContent += `Ошибка загрузки`;
-            console.log("Ошибка загрузки");
-        })
-        .finally(() => {
-            console.log("...");
-            // isProcess = false;
-        });
+    promise.then(resolve => {
+        // elResult.textContent += `Загрузка успешно завершена - ${resolve}`;
+        // sysAdminTest = request.response;
+        // console.log(sysAdminTest);
+        console.log(`Загрузка успешно завершена - ${resolve}`);
+
+
+        // showTest(sysAdminTest);
+        // console.log(sysAdminTest);
+        // throw new Error('Ошибка произошла в загрузке');
+        // return;
+    })
+    promise.catch(error => {
+        // elResult.textContent += `Ошибка загрузки`;
+        console.log(111, error);
+    })
+    promise.finally(() => {
+        console.log("...");
+        // isProcess = false;
+    });
+
+    return promise;
 }
+
+// async function loadJson() {
+//     console.log("loadJson...");
+//     elResult.textContent = 'Идет загрузка данных...';
+//     try {
+//         // const requestURL = "./json/test.json",
+//         //     request = new XMLHttpRequest();
+//         // request.open("GET", requestURL);
+//         // request.responseType = "json";
+//         // request.send();
+//         elResult.textContent += 'Загрузка успешно завершена';
+//         // console.log("Загрузка успешно завершена -");
+//         // sysAdminTest = request.response;
+//         // showTest(sysAdminTest);
+//         // console.log(sysAdminTest);
+//     } catch (error) {
+//         elResult.textContent += `Ошибка загрузки`;
+//         console.log("Ошибка загрузки");
+//     } finally {
+//         console.log("...finally");
+//     }
+// }
 
 //============================================================
 
@@ -220,19 +249,19 @@ function randomQuestion(obj) {
     questions = obj.survey;
 
     let testNumberArr = []; // get all number test in Arr & randomize
-    
+
     for (let key in questions) { // for (let i = 1; i < questions.length; i++) { 
         testNumberArr.push(questions[key].numberTest);
     }
     testNumberArr.shift(); //  del parking 0
 
     x = testNumberArr;
-    x.sort(compareNum);// check break in number question json, else err
+    x.sort(compareNum); // check break in number question json, else err
 
     function compareNum(a, b) {
         return a - b;
     }
-    
+
     if (x[x.length - 1] !== x.length) {
         alert("произошла ошибка, свяжитесь с администратором admin@mail.net");
         console.log("ошибка в порядке номеров json");
@@ -299,7 +328,7 @@ function doTest(obj, how) { // формирование и вывод прямо
             <button type='button' onClick='onChangeButtonValue2(${x[i]})' >${i+1}</button>
             `;
             answerList.appendChild(answerButton);
-            
+
         }
     }
 
