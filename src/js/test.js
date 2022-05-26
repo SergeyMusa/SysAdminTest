@@ -145,9 +145,9 @@ checkerOneAll.addEventListener('click', (event) => {
     let labelOneAll = document.getElementById('labelOneAll');
 
     if (checkerOneAll.checked === true) {
-        labelOneAll.innerHTML = 'тесты все подряд или <b>по одному</b>';
+        labelOneAll.innerHTML = 'вопросы все подряд или <b>по одному</b>';
     } else {
-        labelOneAll.innerHTML = 'тесты <b>все подряд</b> или по одному';
+        labelOneAll.innerHTML = 'вопросы <b>все подряд</b> или по одному';
     }
 });
 
