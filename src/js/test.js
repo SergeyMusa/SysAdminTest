@@ -44,13 +44,13 @@ const Anketa = {
     },
     // ПЕРЕЛЕДАТЬ
     populateHeader: function (obj) { // вывод сформированого заголовка
-        const createH1 = document.querySelector(".rezult"); // h1.rezult
+        const createH1 = document.querySelector(".result"); // h1.result
         const user = document.createElement("p");
 
         createH1.textContent = obj.jTestSysadmin;
         Anketa.header.appendChild(createH1);
 
-        user.textContent = `Тест проходит: ${localStorage.getItem('user')} из организации: 
+        user.textContent = `Тест прошёл: ${localStorage.getItem('user')} из организации: 
             ${localStorage.getItem('org')}, попытка №${localStorage.getItem('count') || '0'}`;
         Anketa.header.appendChild(user);
     },
@@ -59,10 +59,17 @@ const Anketa = {
     }
 };
 //----
-const answers = {
-    answerList: {},
-    answerListTrue: {}
-};
+let 
+    answerList = {},
+    answerListTrue = {};
+
+// const
+// answers = {
+//     answerList: {},
+//     answerListTrue: {}
+// };
+
+
 //------------------------------------------
 
 // userButtonTest.disabled = false;
@@ -202,14 +209,14 @@ Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest //userBut
     Anketa.status = 2;
 
     Anketa.sysAdminTest.survey.map(item => { //sysAdminTest["survey"].map(item => {
-        answers.answerListTrue[item.numberTest] = item.right;
+        answerListTrue[item.numberTest] = item.right;
     });
     // delete answerListTrue[0]; //answerListTrue["0"] // убираем парковочный ответ ??
 
-    // console.log("answerList____: ", answerList);
-    // console.log('answerListTrue: ', answerListTrue);
+    console.log("answerList____: ", answerList);
+    console.log('answerListTrue: ', answerListTrue);
 
-    Anketa.equal = isEqual(answers.answerList, answers.answerListTrue);
+    Anketa.equal = isEqual(answerList, answerListTrue);
 
     console.log('isEqual_', Anketa.equal);
     // console.log('al=', Object.keys(answerList).length);
@@ -220,21 +227,22 @@ Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest //userBut
 
 
 function onChangeButtonValue(num, value) {
-    answers.answerList[num] = value;
+    answerList[num] = value;
 }
 
 function lengthObj2(Obj) {
     return Object.keys(Obj).length;
 }
 
-function onChangeButtonValue2(num, value) {
-    // answerList[num] = value;
-    console.log(answers.answerList[num] = value);
-}
+// function onChangeButtonValue2(num, value) {
+//     // answerList[num] = value;
+//     console.log(answerList[num] = value);
+// }
 
-//  перенести в начало ?
+//  перенести в начало ? ------------------------------
 let randomQuestions = 0,
     questions = '';
+
 
 function randomQuestion(obj) {
     questions = obj.survey;
@@ -248,11 +256,12 @@ function randomQuestion(obj) {
     testNumberArr.shift(); //  del parking 0
 
     randomQuestions = testNumberArr;
+    const compareNum = (a, b) => a - b;
     randomQuestions.sort(compareNum); // check break in number question json, else err
 
-    function compareNum(a, b) {
-        return a - b;
-    }
+    // function compareNum(a, b) {
+    //     return a - b;
+    // }
 
     if (randomQuestions[randomQuestions.length - 1] !== randomQuestions.length) {
         alert("произошла ошибка, свяжитесь с администратором admin@mail.net");
@@ -266,21 +275,17 @@ function randomQuestion(obj) {
     return testNumberArr;
 }
 
-
-
 function doTest(obj, how) { // формирование и вывод прямого теста
     randomQuestion(obj); // формируем случайную последовательность наших вопросов
     console.log(randomQuestions);
-    // -------do there-------
+    
     const
         myArticle = document.createElement("article"),
-        // let
         testNumber = document.createElement("h2"),
         testQuestion = document.createElement("h5"),
         testVariants = document.createElement("p"),
         testAnswer = document.createElement("p");
-
-    let position = document.querySelector('#top');
+    // let position = document.querySelector('#top');
 
     let variantAnswer = '';
 
@@ -289,32 +294,25 @@ function doTest(obj, how) { // формирование и вывод прямо
     // answers.answerList = document.createElement("div");
 
     if (how === 'All') { // чекер выводить по одному или все вопросы сразу 
-
-        answers.answerList = document.createElement("div");
-       
+        answerList = document.createElement("div");
 
         for (let i = 0; i < randomQuestions.length; i++) {
             const title =  document.createElement("div");
 
             variantAnswer = questions[randomQuestions[i]].answers;
+            // console.log("variantAnswer_"+i+"-"+variantAnswer);
             testNumber.textContent = i + 1; //отображаемый number
             testQuestion.textContent = `Вопрос: ${questions[randomQuestions[i]].question}`;
             testVariants.textContent = `Варианты ответов: ${questions[randomQuestions[i]].answers}`;
             testAnswer.textContent   = `Правильный ответ: ${questions[randomQuestions[i]].right} - ${questions[randomQuestions[i]].justification}`;
 
-            // position.appendChild(testNumber);
-            
-            // console.log(i + 1);
-            // console.log(testNumber);//.textContent);
-            // console.log(testQuestion);//.textContent);
-
             title.innerHTML=`<h3> ${testNumber.textContent} </h3> \n <h4>${testQuestion.textContent} </h4>`;
            
             myArticle.appendChild(title);
             showQuestion(randomQuestions[i]);
-
-            
         }
+
+// -------do there-------
     } else { //(how === 'One')
         let i = 0;
         // variantAnswer = questions[x[i]].answers;
@@ -339,25 +337,18 @@ function doTest(obj, how) { // формирование и вывод прямо
     }
 
     function showQuestion(numberQuestion) {
-
-        
         for (let numberAnswer = 1; numberAnswer < variantAnswer.length; numberAnswer++) {
-
             const radioAnswer = document.createElement("div");
             radioAnswer.innerHTML = `
                 <input type='radio' name='answer${numberQuestion}' value='${numberAnswer}' onClick='onChangeButtonValue(${numberQuestion}, ${numberAnswer})'> 
                 <label for='${numberAnswer}'>${variantAnswer[numberAnswer]}</label>`;
-
             // `<input type='radio' name='answer${x[i]}' value='${j}' onClick='onChangeButtonValue(${x[i]}, ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
-            answers.answerList.appendChild(radioAnswer);
-            // console.log(radioAnswer);//.textContent);
+            answerList.appendChild(radioAnswer);
              myArticle.appendChild(radioAnswer);
+            //  answers.answerList[i] = 0;
         }
-        // answers.answerList.appendChild(myArticle);
-        
-        // myArticle.appendChild(answers.answerList);
         Anketa.section.appendChild(myArticle);
-       
+
     }
 }
 
@@ -377,9 +368,13 @@ function isEqual(answerListE, answerListTrueE) { // сравнение двух 
     let answerAmount = 0;
     let answerRight = 0;
 
-    // delete answerListTrue["0"];
+    // delete answerListTrueE['0']; // answerListTrueE.shift;
 
-    if (props1.length !== props2.length) {
+    console.log("1."+answerListE +'-'+answerListTrueE);
+    console.log("2."+answerList+'-'+answerListTrue);
+
+    if (props1.length !== props2.length-1) {
+        console.log(props1.length +'-'+ props2.length);
         console.log('что-то пошло не так, ответов и тестов разное кол-во'); // 
         alert("вы ответили не на все вопросы");
         return false;
