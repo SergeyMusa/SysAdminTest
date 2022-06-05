@@ -59,7 +59,7 @@ const Anketa = {
     }
 };
 //----
-let 
+let
     answerList = {},
     answerListTrue = {};
 
@@ -91,7 +91,7 @@ let
 
 
 //  загрузка JSON
-//-------------------------------------------------------------------------------    
+//-------------------------------------------------------------------------------
 // request.onload = function () {
 
 const requestURL = "./json/test.json",
@@ -156,7 +156,7 @@ Anketa.checkerOneAll.addEventListener('click', (event) => {
 
 function togleInput() {
     // thing.classlist.toggle.disabled ? true: false;
-    // let isHidden = thing.classlist.disabled; 
+    // let isHidden = thing.classlist.disabled;
     // console.log('hide ', isHidden);
     const alertRed = document.getElementById('autorization');
     if (Anketa.checkboxClick.checked == false) {
@@ -199,9 +199,8 @@ Anketa.btnStartTest.addEventListener('click', (event) => { //const doStartTest =
 
     Anketa.sysAdminTest = request.response;
 
-    (Anketa.checkerOneAll.checked) ? doTest(Anketa.sysAdminTest, 'One'): doTest(Anketa.sysAdminTest, 'All');
+    (Anketa.checkerOneAll.checked) ? doTest(Anketa.sysAdminTest, 'One') : doTest(Anketa.sysAdminTest, 'All');
 });
-
 
 
 Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest //userButtonTest
@@ -249,24 +248,24 @@ function randomQuestion(obj) {
 
     let testNumberArr = []; // get all number test in Arr & randomize
 
-    for (let key in questions) { // for (let i = 1; i < questions.length; i++) { 
+    for (let key in questions) { // for (let i = 1; i < questions.length; i++) {
         testNumberArr.push(questions[key].numberTest);
     }
 
     testNumberArr.shift(); //  del parking 0
 
     randomQuestions = testNumberArr;
-    const compareNum = (a, b) => a - b;
+    // const compareNum = (a, b) => a - b;
     randomQuestions.sort(compareNum); // check break in number question json, else err
 
-    // function compareNum(a, b) {
-    //     return a - b;
-    // }
+    function compareNum(a, b) {
+        return a - b;
+    }
 
     if (randomQuestions[randomQuestions.length - 1] !== randomQuestions.length) {
         alert("произошла ошибка, свяжитесь с администратором admin@mail.net");
         console.log("ошибка в порядке номеров json");
-        console.log(`ожидался номер:${randomQuestions.length}, а получен:${randomQuestions[randomQuestions.length-1]}`);
+        console.log(`ожидался номер:${randomQuestions.length}, а получен:${randomQuestions[randomQuestions.length - 1]}`);
     }
 
     randomArr(testNumberArr); // рандом в первый раз раз запускать пустой, второй рабочий
@@ -278,7 +277,7 @@ function randomQuestion(obj) {
 function doTest(obj, how) { // формирование и вывод прямого теста
     randomQuestion(obj); // формируем случайную последовательность наших вопросов
     console.log(randomQuestions);
-    
+
     const
         myArticle = document.createElement("article"),
         testNumber = document.createElement("h2"),
@@ -291,22 +290,23 @@ function doTest(obj, how) { // формирование и вывод прямо
 
     myArticle.setAttribute("class", "test");
 
+    // answers.answerList = document.createElement("div");
     const questionList = document.createElement("div");
 
-    if (how === 'All') { // чекер выводить по одному или все вопросы сразу 
+    if (how === 'All') { // чекер выводить по одному или все вопросы сразу
 
         for (let i = 0; i < randomQuestions.length; i++) {
-            const title =  document.createElement("div");
+            const title = document.createElement("div");
 
             variantAnswer = questions[randomQuestions[i]].answers;
             // console.log("variantAnswer_"+i+"-"+variantAnswer);
             testNumber.textContent = i + 1; //отображаемый number
             testQuestion.textContent = `Вопрос: ${questions[randomQuestions[i]].question}`;
             testVariants.textContent = `Варианты ответов: ${questions[randomQuestions[i]].answers}`;
-            testAnswer.textContent   = `Правильный ответ: ${questions[randomQuestions[i]].right} - ${questions[randomQuestions[i]].justification}`;
+            testAnswer.textContent = `Правильный ответ: ${questions[randomQuestions[i]].right} - ${questions[randomQuestions[i]].justification}`;
 
-            title.innerHTML=`<h3> ${testNumber.textContent} </h3> \n <h4>${testQuestion.textContent} </h4>`;
-           
+            title.innerHTML = `<h3> ${testNumber.textContent} </h3> \n <h4>${testQuestion.textContent} </h4>`;
+
             myArticle.appendChild(title);
             showQuestion(randomQuestions[i]);
         }
@@ -339,11 +339,10 @@ function doTest(obj, how) { // формирование и вывод прямо
         for (let numberAnswer = 1; numberAnswer < variantAnswer.length; numberAnswer++) {
             const radioAnswer = document.createElement("div");
             radioAnswer.innerHTML = `
-            <input type='radio' name='answer${numberQuestion}' value='${numberAnswer}' id="${numberAnswer}${numberQuestion}" onClick='onChangeButtonValue(${numberQuestion}, ${numberAnswer})'> 
-            <label for="${numberAnswer}${numberQuestion}">${variantAnswer[numberAnswer]}</label>`;
-        // `<input type='radio' name='answer${x[i]}' value='${j}' onClick='onChangeButtonValue(${x[i]}, ${j})'> <label for='${j}'>${variantAnswer[j]}</label>`;
+                <input type='radio' name='answer${numberQuestion}' value='${numberAnswer}' id="${numberAnswer}${numberQuestion}" onClick='onChangeButtonValue(${numberQuestion}, ${numberAnswer})'> 
+                <label for="${numberAnswer}${numberQuestion}">${variantAnswer[numberAnswer]}</label>`;
             questionList.appendChild(radioAnswer);
-             myArticle.appendChild(radioAnswer);
+            myArticle.appendChild(radioAnswer);
             //  answers.answerList[i] = 0;
         }
         Anketa.section.appendChild(myArticle);
@@ -355,7 +354,7 @@ function doTest(obj, how) { // формирование и вывод прямо
 function isEqual(answerListE, answerListTrueE) { // сравнение двух объектов с подсчетом процентов
 
     Anketa.populateHeader(Anketa.sysAdminTest);
-     delete answerListTrueE[0]; // answerListTrueE.shift;
+    delete answerListTrueE[0]; // answerListTrueE.shift;
 
     const props1 = Object.getOwnPropertyNames(answerListE);
     const props2 = Object.getOwnPropertyNames(answerListTrueE);
@@ -368,14 +367,13 @@ function isEqual(answerListE, answerListTrueE) { // сравнение двух 
     let answerAmount = 0;
     let answerRight = 0;
 
-    
 
-    // console.log("1."+answerListE +'-'+answerListTrueE);
-    // console.log("2."+answerList+'-'+answerListTrue);
+    // console.log("1." + answerListE + '-' + answerListTrueE);
+    // console.log("2." + answerList + '-' + answerListTrue);
 
-    if (props1.length !== props2.length) {
-        console.log(props1.length +'-'+ props2.length);
-        console.log('что-то пошло не так, ответов и тестов разное кол-во'); // 
+    if (props1.length !== props2.length - 1) {
+        console.log(props1.length + '-' + props2.length);
+        console.log('что-то пошло не так, ответов и тестов разное кол-во'); //
         alert("вы ответили не на все вопросы");
         return false;
     }
@@ -400,7 +398,7 @@ function isEqual(answerListE, answerListTrueE) { // сравнение двух 
     // for (let [key, value] of answerRight) {
     // console.log(i);
     // };
-    // const 
+    // const
     Anketa.section = document.querySelector("#bottom");
     // const testRez = document. ("h5");
     var delEl = document.querySelector('h5');
