@@ -225,14 +225,14 @@ Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest //userBut
     getTime();
 });
 
+const onChangeButtonValue = (num, value) => (answerList[num] = value);
+// function onChangeButtonValue(num, value) {
+//     answerList[num] = value;
+// }
 
-function onChangeButtonValue(num, value) {
-    answerList[num] = value;
-}
-
-function lengthObj2(Obj) {
-    return Object.keys(Obj).length;
-}
+// function lengthObj2(Obj) {
+//     return Object.keys(Obj).length;
+// }
 
 // function onChangeButtonValue2(num, value) {
 //     // answerList[num] = value;
