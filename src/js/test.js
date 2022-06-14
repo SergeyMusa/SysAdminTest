@@ -25,23 +25,80 @@ const Anketa = {
     timeEnd: 0, //время закончил тест
     result: '0', //процент правльных ответов и резюме
 
+    // доп.переменные
     equal: '',
     sysAdminTest: '',
-    // timeBeginTest: 0,
-    checkboxClick: document.querySelector("#flexSwitchCheckDefault"),
+    autoriseBaner: false, //true //false
 
+    checkboxClick: document.querySelector("#flexSwitchCheckDefault"),
+    // страница
     header: document.querySelector("header"),
     section: document.querySelector("#top"),
     checkerAutorise: document.querySelector('#checkerAutorise'),
     checkerOneAll: document.querySelector('#checkerOneAll'),
-    btnCheckTest: document.querySelector('.btn-success'), //btnCheckTest
+    alertRed: document.getElementById('autorization'),
+
+    // btnCheckTest: document.querySelector('.btn-success'), 
+    btnCheckTest: document.querySelector('#btnCheckTest'), 
     btnStartTest: document.querySelector('#btnStartTest'),
+
     inputUserOrg: document.querySelector('#inputUserOrg'),
     inputUserName: document.querySelector('#inputUserName'),
 
-    editTop: function () {
-        console.log("editTop");
+    // funcheckerOneAll: function () {
+    // Anketa.checkerOneAll.addEventListener('click', (event) => {
+    //     let labelOneAll = document.getElementById('labelOneAll');
+    //     if (Anketa.checkerOneAll.checked === true) {
+    //         labelOneAll.innerHTML = 'вопросы все подряд или <b>по одному</b>';
+    //     } else {
+    //         labelOneAll.innerHTML = 'вопросы <b>все подряд</b> или по одному';
+    //     }
+    // });
+    // },
+    
+
+   start: function () {
+        console.log("start");
+        if (Anketa.autoriseBaner === true) {
+
+            checkerAutorise.addEventListener('click', (event) => {
+                Anketa.togleInput();
+
+                event.target.remove();
+            });
+        } else {
+            // Anketa.alertRed.hidden = true;
+            Anketa.checkboxClick.checked = true;
+            Anketa.togleInput();
+        }
+        // Anketa.togleInput();
+
+    } ,
+
+    togleInput: function () {
+        // thing.classlist.toggle.disabled ? true: false;
+        // let isHidden = thing.classlist.disabled; 
+        // console.log('hide ', isHidden);
+       
+        if (Anketa.checkboxClick.checked == false) {
+            Anketa.inputUserName.setAttribute('disabled', true);
+            Anketa.inputUserOrg.setAttribute('disabled', true);
+            Anketa.btnStartTest.disabled = true;
+        } else {
+            Anketa.inputUserName.disabled = false;
+            Anketa.inputUserOrg.disabled = false;
+            Anketa.btnStartTest.disabled = false;
+            Anketa.alertRed.hidden = true;
+            Anketa.checkerAutorise.style.color = "black";
+        }
+        Anketa.checkboxClick.checked = false;
+        Anketa.btnCheckTest.disabled = true;
+        // btnCheckTest.disabled = false;
+
+        Anketa.timeBegin = getTime();
     },
+    
+
     // ПЕРЕЛЕДАТЬ
     populateHeader: function (obj) { // вывод сформированого заголовка
         const createH1 = document.querySelector(".result"); // h1.result
@@ -54,9 +111,15 @@ const Anketa = {
             ${localStorage.getItem('org')}, попытка №${localStorage.getItem('count') || '0'}`;
         Anketa.header.appendChild(user);
     },
-    doResult: function () {
-        console.log("Result");
-    }
+
+
+    
+    editTop: function () {
+        console.log("editTop");
+    },
+    
+
+    
 };
 //----
 let 
@@ -72,7 +135,7 @@ let
 
 //------------------------------------------
 
-// userButtonTest.disabled = false;
+Anketa.start();
 
 
 // //  тренировочный объект
@@ -134,15 +197,6 @@ function loadJson() {
 // -------------------------------------------------------------------------------------
 
 
-Anketa.checkerAutorise.addEventListener('click', (event) => {
-    togleInput();
-    event.target.remove();
-    // console.log(Anketa.checkerAutorise);
-
-    Anketa.timeBegin = getTime();
-    // console.log("timeBeginTest_"+timeBeginTest);
-    // Anketa.status = 1;
-});
 
 
 Anketa.checkerOneAll.addEventListener('click', (event) => {
@@ -154,25 +208,6 @@ Anketa.checkerOneAll.addEventListener('click', (event) => {
     }
 });
 
-function togleInput() {
-    // thing.classlist.toggle.disabled ? true: false;
-    // let isHidden = thing.classlist.disabled; 
-    // console.log('hide ', isHidden);
-    const alertRed = document.getElementById('autorization');
-    if (Anketa.checkboxClick.checked == false) {
-        Anketa.inputUserName.setAttribute('disabled', true);
-        Anketa.inputUserOrg.setAttribute('disabled', true);
-        Anketa.btnStartTest.disabled = true;
-    } else {
-        Anketa.inputUserName.disabled = false;
-        Anketa.inputUserOrg.disabled = false;
-        Anketa.btnStartTest.disabled = false;
-        alertRed.hidden = true;
-        Anketa.checkerAutorise.style.color = "black";
-    }
-    Anketa.checkboxClick.checked = false;
-}
-
 
 Anketa.btnStartTest.addEventListener('click', (event) => { //const doStartTest = () => {
     const randomUser = randomInteger(100, 999);
@@ -181,8 +216,8 @@ Anketa.btnStartTest.addEventListener('click', (event) => { //const doStartTest =
     Anketa.user = Anketa.inputUserName.placeholder;
     Anketa.org = Anketa.inputUserOrg.placeholder;
 
-    if (Anketa.inputUserName.value !== "" && Anketa.inputUserOrg.value !== "") {
-        // userName.placeholder = "Сыкло )";
+    if (Anketa.inputUserName.value !== "" && Anketa.inputUserOrg.value !== "") { // || value !== null
+        // userName.placeholder = "Сыкло )"; 
         Anketa.user = `"${Anketa.inputUserName.value}"`;
         Anketa.org = `"${Anketa.inputUserOrg.value}"`;
     }
@@ -191,10 +226,10 @@ Anketa.btnStartTest.addEventListener('click', (event) => { //const doStartTest =
     localStorage.setItem('org', Anketa.org);
     // localStorage.setItem('timer', timer);
 
-    togleInput();
+    Anketa.togleInput();
     Anketa.status = 1;
     // btnStartTest.disabled = true;
-    // btnCheckTest.disabled = false;
+    Anketa.btnCheckTest.disabled = false;
     // event.target.remove();
 
     Anketa.sysAdminTest = request.response;
@@ -204,8 +239,7 @@ Anketa.btnStartTest.addEventListener('click', (event) => { //const doStartTest =
 
 
 
-Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest //userButtonTest
-    Anketa.btnCheckTest.disabled = true;
+Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest 
     Anketa.status = 2;
 
     Anketa.sysAdminTest.survey.map(item => { //sysAdminTest["survey"].map(item => {
@@ -219,7 +253,6 @@ Anketa.btnCheckTest.addEventListener('click', () => { //userButtonTest //userBut
     Anketa.equal = isEqual(answerList, answerListTrue);
 
     console.log('isEqual_', Anketa.equal);
-    // console.log('al=', Object.keys(answerList).length);
 
     testCount();
     getTime();
@@ -271,13 +304,14 @@ function randomQuestion(obj) {
 
     randomArr(testNumberArr); // рандом в первый раз раз запускать пустой, второй рабочий
     randomArr(testNumberArr);
-    // console.log(testNumberArr);
     return testNumberArr;
 }
 
 function doTest(obj, how) { // формирование и вывод прямого теста
     randomQuestion(obj); // формируем случайную последовательность наших вопросов
     console.log(randomQuestions);
+    Anketa.btnStartTest.disabled = false;
+
     
     const
         myArticle = document.createElement("article"),

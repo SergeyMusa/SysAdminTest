@@ -62,3 +62,9 @@ function getTime () {
   // document.write(Minutes);
   // document.write(Seconds);
 }
+
+// function sortArr(a, b) {
+//   return a > b ? 1 : b > a ? -1 : 0;
+//   }
+// arr.sort((a, b) => a - b);
+
